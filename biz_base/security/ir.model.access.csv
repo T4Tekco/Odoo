@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_bigz_base_bigz_base,bigz_base.bigz_base,model_bigz_base_bigz_base,base.group_user,1,1,1,1
+biz.access_bizcard_industry_user,User,biz_base.model_biz_industry,biz_group_user,1,0,0,0
+biz.access_bizcard_industry_manager,Manager,biz_base.model_biz_industry,biz_group_manager,1,1,1,1
