@@ -1,3 +1,16 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 biz.access_bizcard_industry_user,User,biz_base.model_biz_industry,biz_group_user,1,0,0,0
 biz.access_bizcard_industry_manager,Manager,biz_base.model_biz_industry,biz_group_manager,1,1,1,1
+
+biz.access_bizcard_phone_user,User,biz_base.model_biz_phone,biz_group_user,1,1,0,1
+biz.access_bizcard_phone_manager,Manager,biz_base.model_biz_phone,biz_group_manager,1,1,1,1
+
+biz.access_bizcard_fax_user,User,biz_base.model_biz_fax,biz_group_user,1,1,0,1
+biz.access_bizcard_fax_manager,Manager,biz_base.model_biz_fax,biz_group_manager,1,1,1,1
+
+biz.access_bizcard_email_user,User,biz_base.model_biz_email,biz_group_user,1,1,0,1
+biz.access_bizcard_email_manager,Manager,biz_base.model_biz_email,biz_group_manager,1,1,1,1
+
+biz.access_bizcard_website_user,User,biz_base.model_biz_website,biz_group_user,1,1,0,1
+biz.access_bizcard_website_manager,Manager,biz_base.model_biz_website,biz_group_manager,1,1,1,1
+
