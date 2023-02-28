@@ -23,13 +23,13 @@
             <xpath expr="//group" position="inside">
                 <group name="biz_industry_gr" attrs="{'invisible': [('is_company', '=', False)]}">
                     <field name="main_industry_id" />
-                    <field name="industry_ids" />
+                    <field name="industry_ids" widget="many2many_tags" />
                 </group>
                 <group name="biz_info_gr" attrs="{'invisible': [('is_company', '=', False)]}">
-                    <field name="phone_ids" />
-                    <field name="fax_ids" />
-                    <field name="website_ids" />
-                    <field name="email_ids" />
+                    <field name="phone_ids" widget="one2many_list" />
+                    <field name="fax_ids" widget="one2many_list" />
+                    <field name="website_ids" widget="one2many_list" />
+                    <field name="email_ids" widget="one2many_list" />
                 </group>
             </xpath>
         </field>
