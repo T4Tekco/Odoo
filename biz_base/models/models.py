@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api
 
 
 # class bigz_base(models.Model):
@@ -16,3 +16,7 @@
 #     def _value_pc(self):
 #         for record in self:
 #             record.value2 = float(record.value) / 100
+
+
+
+
