@@ -14,3 +14,11 @@ class Contact(models.Model):
     industry_ids = fields.Many2many(
         "biz.industry", relation="industry_rel", string="Sub Industries"
     )
+    phone_ids = fields.One2many('biz.phone', 'phone',string="List Phone")
+    fax_ids = fields.One2many('biz.fax', 'fax',string="List Fax")
+    website_ids = fields.One2many('biz.website','website',string="Websites")
+    email_ids = fields.One2many('biz.email', 'email',string="List Email")
+
+
+
+    
