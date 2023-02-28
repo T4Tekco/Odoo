@@ -1,3 +1,37 @@
 <odoo>
+    <!-- Simple form -->
+    <record id="view_contact_simple_form_biz_extend" model="ir.ui.view">
+        <field name="name">Simple Partner: BizCard Extend</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_simple_form" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="attributes">
+                <attribute name="attrs">{}</attribute>
+            </field>
+        </field>
+    </record>
 
+    <!-- Form -->
+    <record id="view_contact_form_biz_extend" model="ir.ui.view">
+        <field name="name">Partner: BizCard Extend</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="attributes">
+                <attribute name="attrs">{}</attribute>
+            </field>
+            <xpath expr="//group" position="inside">
+                <group name="biz_industry_gr" attrs="{'invisible': [('is_company', '=', False)]}">
+                    <field name="main_industry_id" />
+                    <field name="industry_ids" />
+                </group>
+                <group name="biz_info_gr" attrs="{'invisible': [('is_company', '=', False)]}">
+                    <field name="phone_ids" />
+                    <field name="fax_ids" />
+                    <field name="website_ids" />
+                    <field name="email_ids" />
+                </group>
+            </xpath>
+        </field>
+    </record>
 </odoo>

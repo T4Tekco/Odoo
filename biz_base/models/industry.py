@@ -4,6 +4,7 @@ from odoo import models, fields
 class BizIndustry(models.Model):
     _name = "biz.industry"
     _description = "Nganh cua cong ty"
+    _rec_name = "code"
 
     name = fields.Char("Industry Name")
     code = fields.Char("Industry Code", unique=True)
