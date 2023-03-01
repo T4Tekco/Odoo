@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- menu industry -->
+    <!-- menu contact -->
     <menuitem id="t4_contact_menu" name="T4 Contact" />
     <record id="action_t4_contact" model="ir.actions.act_window">
         <field name="name">Contact</field>
@@ -19,7 +19,7 @@
     <!-- menu email -->
     <record id="action_biz_email" model="ir.actions.act_window">
         <field name="name">Email</field>
-        <field name="res_model">res.partner</field>
+        <field name="res_model">biz.email</field>
         <field name="view_mode">tree,form</field>
 
     </record>
@@ -28,7 +28,7 @@
 
     <record id="action_biz_phone" model="ir.actions.act_window">
         <field name="name">Phone</field>
-        <field name="res_model">res.partner</field>
+        <field name="res_model">biz.phone</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem id="contact_phone" name="Phone" parent="menu_info" action="action_biz_phone" />
@@ -37,7 +37,7 @@
 
     <record id="action_biz_fax" model="ir.actions.act_window">
         <field name="name">Fax</field>
-        <field name="res_model">res.partner</field>
+        <field name="res_model">biz.fax</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem id="contact_fax" name="Fax" parent="menu_info" action="action_biz_fax" />
@@ -45,7 +45,7 @@
 
     <record id="action_biz_website" model="ir.actions.act_window">
         <field name="name">Website</field>
-        <field name="res_model">res.partner</field>
+        <field name="res_model">biz.website</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem id="contact_website" name="Website" parent="menu_info" action="action_biz_website" />
