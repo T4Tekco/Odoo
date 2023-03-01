@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+t4.access_bizcard_industry_user,User,t4contact.model_biz_industry,t4_group_user,1,0,0,0
+t4.access_bizcard_industry_manager,Manager,t4contact.model_biz_industry,t4_group_manager,1,1,1,1
+
+t4.access_bizcard_phone_user,User,t4contact.model_biz_phone,t4_group_user,1,1,0,1
+t4.access_bizcard_phone_manager,Manager,t4contact.model_biz_phone,t4_group_manager,1,1,1,1
+
+t4.access_bizcard_fax_user,User,t4contact.model_biz_fax,t4_group_user,1,1,0,1
+t4.access_bizcard_fax_manager,Manager,t4contact.model_biz_fax,t4_group_manager,1,1,1,1
+
+t4.access_bizcard_email_user,User,t4contact.model_biz_email,t4_group_user,1,1,0,1
+t4.access_bizcard_email_manager,Manager,t4contact.model_biz_email,t4_group_manager,1,1,1,1
+
+t4.access_bizcard_website_user,User,t4contact.model_biz_website,t4_group_user,1,1,0,1
+t4.access_bizcard_website_manager,Manager,t4contact.model_biz_website,t4_group_manager,1,1,1,1
+

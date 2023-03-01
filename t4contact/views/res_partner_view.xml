@@ -1,7 +1,7 @@
 <odoo>
     <!-- Simple form -->
     <record id="view_contact_simple_form_biz_extend" model="ir.ui.view">
-        <field name="name">Simple Partner: BizCard Extend</field>
+        <field name="name">Simple Partner: T4 Extend</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_simple_form" />
         <field name="arch" type="xml">
@@ -13,7 +13,7 @@
 
     <!-- Form -->
     <record id="view_contact_form_biz_extend" model="ir.ui.view">
-        <field name="name">Partner: BizCard Extend</field>
+        <field name="name">Partner: T4 Extend</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
