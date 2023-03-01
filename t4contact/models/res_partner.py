@@ -16,3 +16,11 @@ class Contact(models.Model):
     fax_ids = fields.One2many("biz.fax", "company_id", string="List Fax")
     website_ids = fields.One2many("biz.website", "company_id", string="Websites")
     email_ids = fields.One2many("biz.email", "company_id", string="List Email")
+
+    # TODO: Add following fields:
+    # Vietnam name,
+    # Short name,
+    # Identity ID/Business Code,
+    # Owner
+    # Legal Representative
+    # Charter Capital
