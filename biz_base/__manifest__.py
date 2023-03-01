@@ -14,6 +14,7 @@
     "data": [
         "security/biz_security.xml",
         "security/ir.model.access.csv",
+        "views/industtry_view.xml"
     ],
     "demo": [
         "demo/demo.xml",
