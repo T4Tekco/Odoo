@@ -42,6 +42,9 @@ class Contact(models.Model):
         column2="legal_rep_id",
         string="Legal Representatives",
     )
+    # name
+    foreign_name = fields.Char("Foreign Name")
+    short_name = fields.Char("Short Name")
 
     identity = fields.Char("Identity ID/Business Code")
 
