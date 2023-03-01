@@ -27,6 +27,9 @@
                         attrs="{'invisible': [('is_company', '=', False)]}">
                         <field name="main_industry_id" />
                         <field name="industry_ids" widget="many2many_tags" />
+                        <field name="owner_ids" widget="many2many_tags" />
+                        <field name="legal_representative_ids" widget="many2many_tags" />
+                        <field name="charter_capital" />
                     </group>
                     <group name="biz_info_gr" attrs="{'invisible': [('is_company', '=', False)]}">
                         <field name="phone_ids" widget="many2many_tags" />
