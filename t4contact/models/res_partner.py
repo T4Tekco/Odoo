@@ -20,9 +20,33 @@ class Contact(models.Model):
     website_ids = fields.One2many("biz.website", "company_id", string="Websites")
     email_ids = fields.One2many("biz.email", "company_id", string="List Email")
 
+    # --- Currency
+    currency_id = fields.Many2one("res.currency")
+    charter_capital = fields.Monetary("Charter Capital", "currency_id")
+
+    # --- Hell
     # 1 số agrument của fields.Many2many: 1. model chính 2. column1 là trường của bị sở hữu 3. column2 là sở hữu 4. relation 5. string
-    # ví dụ ở đây: owner_id là người sở hữu công ty, company_id là côngty
-    owner_ids= fields.Many2many("res.partner",column1="company_id",column2="owner_id" ,relation="owner_rel", string="Owner")
+    # ví dụ ở đây: owner_id là người sở hữu công ty, company_id là côngty bị sở hữ
+    
+    owner_ids = fields.Many2many(
+        "res.partner",
+        relation="owner_company_rel",
+        column1="company_id",
+        column2="owner_id",
+        string="Owners",
+    )
+    legal_representative_ids = fields.Many2many(
+        "res.partner",
+        relation="legal_company_rel",
+        column1="company_id",
+        column2="legal_rep_id",
+        string="Legal Representatives",
+    )
+
+    identity = fields.Char("Identity ID/Business Code")
+
+   
+
 
     
 
