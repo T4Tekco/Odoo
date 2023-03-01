@@ -15,7 +15,7 @@
         "security/biz_security.xml",
         "security/ir.model.access.csv",
         "views/res_partner_view.xml",
-        "views/industtry_view.xml"
+        "views/industry_view.xml"
     ],
     "demo": [
         "demo/demo.xml",
