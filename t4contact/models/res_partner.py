@@ -26,8 +26,7 @@ class Contact(models.Model):
 
     # --- Hell
     # 1 số agrument của fields.Many2many: 1. model chính 2. column1 là trường của bị sở hữu 3. column2 là sở hữu 4. relation 5. string
-    # ví dụ ở đây: owner_id là người sở hữu công ty, company_id là côngty bị sở hữ
-    
+    # ví dụ ở đây: owner_id là người sở hữu công ty, company_id là côngty bị sở hữu
     owner_ids = fields.Many2many(
         "res.partner",
         relation="owner_company_rel",
@@ -47,9 +46,3 @@ class Contact(models.Model):
     short_name = fields.Char("Short Name")
 
     identity = fields.Char("Identity ID/Business Code")
-
-   
-
-
-    
-
