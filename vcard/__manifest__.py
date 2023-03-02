@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "V card",
+    'name': "V Card",
 
     'summary': """
-       render the data in database to vcard format""",
+       Render the data in database to vcard format""",
 
     'description': """
-        this module is used to render the data in database to vcard format
+        This module is used to render the data in database to vcard format
     """,
 
     'author': "T4Tek",
@@ -15,7 +15,7 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'productivity/vcard',
+    'category': 'Productivity/Vcard',
     'version': '16.0.1.0.0',
 
     # any module necessary for this one to work correctly
@@ -31,4 +31,5 @@
     'demo': [
         'demo/demo.xml',
     ],
+    "application": False,
 }
