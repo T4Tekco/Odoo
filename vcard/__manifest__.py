@@ -1,26 +1,25 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "vcard",
+    'name': "V card",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+       render the data in database to vcard format""",
 
     'description': """
-        Long description of module's purpose
+        this module is used to render the data in database to vcard format
     """,
 
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
+    'author': "T4Tek",
+    'website': "https://t4tek.co/",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'productivity/vcard',
+    'version': '16.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['t4contact'],
 
     # always loaded
     'data': [
