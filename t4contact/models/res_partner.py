@@ -19,8 +19,7 @@ class Contact(models.Model):
     fax_ids = fields.One2many("biz.fax", "company_id", string="List Fax")
     website_ids = fields.One2many("biz.website", "company_id", string="Websites")
     email_ids = fields.One2many("biz.email", "company_id", string="List Email")
-    # ---Social nextwork
-    social_list_ids = fields.One2many("biz.social", "company_id", string="Social Nextwork")
+    
 
 
 
@@ -50,3 +49,6 @@ class Contact(models.Model):
     short_name = fields.Char("Short Name")
 
     identity = fields.Char("Identity ID/Business Code")
+
+    # ---Social nextwork
+    social_list_ids = fields.One2many("biz.social_network", "company_id", string="Social Network")

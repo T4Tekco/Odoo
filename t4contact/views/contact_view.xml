@@ -50,12 +50,5 @@
     </record>
     <menuitem id="contact_website" name="Website" parent="menu_info" action="action_biz_website" />
 
-    <!-- menu social -->
-   <record id="action_social" model="ir.actions.act_window">
-        <field name="name">Social Nextwork</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form,kanban</field>
-    </record>
-    <menuitem id="menu_social" name="Social Nextwork" parent="menu_info" action="action_social" />
 
 </odoo>
