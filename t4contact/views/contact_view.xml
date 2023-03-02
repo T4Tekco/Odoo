@@ -5,7 +5,7 @@
     <record id="action_t4_contact" model="ir.actions.act_window">
         <field name="name">Contact</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
     <menuitem id="menu_contact" name="Contact" parent="t4_contact_menu" action='action_t4_contact' />
 
@@ -20,7 +20,7 @@
     <record id="action_biz_email" model="ir.actions.act_window">
         <field name="name">Email</field>
         <field name="res_model">biz.email</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
 
     </record>
     <menuitem id="contact_email" name="Email" parent="menu_info" action="action_biz_email" />
@@ -29,7 +29,7 @@
     <record id="action_biz_phone" model="ir.actions.act_window">
         <field name="name">Phone</field>
         <field name="res_model">biz.phone</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
     <menuitem id="contact_phone" name="Phone" parent="menu_info" action="action_biz_phone" />
 
@@ -38,7 +38,7 @@
     <record id="action_biz_fax" model="ir.actions.act_window">
         <field name="name">Fax</field>
         <field name="res_model">biz.fax</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
     <menuitem id="contact_fax" name="Fax" parent="menu_info" action="action_biz_fax" />
     <!-- menu website -->
@@ -46,8 +46,16 @@
     <record id="action_biz_website" model="ir.actions.act_window">
         <field name="name">Website</field>
         <field name="res_model">biz.website</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
     <menuitem id="contact_website" name="Website" parent="menu_info" action="action_biz_website" />
+
+    <!-- menu social -->
+   <record id="action_social" model="ir.actions.act_window">
+        <field name="name">Social Nextwork</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+    <menuitem id="menu_social" name="Social Nextwork" parent="menu_info" action="action_social" />
 
 </odoo>

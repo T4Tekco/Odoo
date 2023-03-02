@@ -19,6 +19,10 @@ class Contact(models.Model):
     fax_ids = fields.One2many("biz.fax", "company_id", string="List Fax")
     website_ids = fields.One2many("biz.website", "company_id", string="Websites")
     email_ids = fields.One2many("biz.email", "company_id", string="List Email")
+    # ---Social nextwork
+    social_list_ids = fields.One2many("biz.social", "company_id", string="Social Nextwork")
+
+
 
     # --- Currency
     currency_id = fields.Many2one("res.currency")
