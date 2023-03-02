@@ -5,3 +5,4 @@ from . import phone
 from . import fax
 from . import website
 from . import email
+from . import social_network

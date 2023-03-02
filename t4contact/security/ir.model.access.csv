@@ -14,3 +14,5 @@ t4.access_bizcard_email_manager,Manager,t4contact.model_biz_email,t4_group_manag
 t4.access_bizcard_website_user,User,t4contact.model_biz_website,t4_group_user,1,1,0,1
 t4.access_bizcard_website_manager,Manager,t4contact.model_biz_website,t4_group_manager,1,1,1,1
 
+t4.access_bizcard_social_user,User,t4contact.model_biz_social_network,t4_group_user,1,1,0,1
+t4.access_bizcard_social_manager,Manager,t4contact.model_biz_social_network,t4_group_manager,1,1,1,1
