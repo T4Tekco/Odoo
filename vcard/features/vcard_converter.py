@@ -63,14 +63,25 @@ class VCard:
     """
     Common (All versions)
 
-    TODO: GEO, KEY, LOGO, NOTE, PHOTO
-    SOUND, SOURCE, TZ, UID
+    TODO: GEO
 
-    DONE: FN, N, EMAIL, ORG, TEL, ADR, BDAY, CATEGORIES, TITLE, URL, TZ, REV
     """
 
     version = ""
-    p_single = ("BDAY", "TITLE", "ROLE", "TZ", "REV")
+    p_single = (
+        "BDAY",
+        "TITLE",
+        "ROLE",
+        "TZ",
+        "REV",
+        "SOURCE",
+        "PHOTO",
+        "LOGO",
+        "KEY",
+        "SOUND",
+        "UID",
+        "NOTE",
+    )
     p_args = ("EMAIL", "ORG", "TEL", "ADR", "CATEGORIES", "URL")
 
     def __init__(self, data):
@@ -155,25 +166,8 @@ class VCard:
 
         return "".join(adr(*e) for e in elements)
 
-    def _BDAY(self, bday: str):
-        """Example BDAY:19700310"""
-
-        return f"BDAY:{bday}\n"
-
     def _CATEGORIES(self, *categories):
         return f"CATEGORIES:" + ",".join(categories) + "\n"
-
-    def _TITLE(self, title: str):
-        return f"TITLE:{title}\n"
-
-    def _ROLE(self, role: str):
-        return f"ROLE:{role}\n"
-
-    def _TZ(self, tz):
-        return f"TZ:{tz}\n"
-
-    def _UID(self):
-        pass
 
     def _URL(self, *elements):
         """
@@ -189,18 +183,10 @@ class VCard:
 
         return "".join(url(*e) for e in elements)
 
-    def _REV(self, timestamp):
-        """Example:
-        REV:19951031T222710Z
-
-        Updated time
-
-        >>> from datetime import datetime
-        >>> dt = datetime.now()
-        >>> dt.strftime("%Y%m%dT%H%M%SZ")
-
-        """
-        return f"REV:{timestamp}\n"
+    def _get_line(self, key, value):
+        if not value:
+            return ""
+        return f"{key}:{value}\n"
 
     def _build_data(self):
         if self.version not in ("2.1", "3.0", "4.0"):
@@ -211,10 +197,9 @@ class VCard:
 
         output = self._N(*self._data["N"]) + self._FN(self._data["FN"])
 
-        for att in self.p_single:
-            a = self._data.get(att)
-            if a:
-                output += getattr(self, f"_{att}")(a)
+        output += "".join(
+            self._get_line(att, self._data.get(att)) for att in self.p_single
+        )
 
         for att in self.p_args:
             args = self._data.get(att)
@@ -294,6 +279,7 @@ if __name__ == "__main__":
             ("business", "https://github.com/T4Tekco"),
         ),
         "REV": datetime.now().strftime("%Y%m%dT%H%M%SZ"),
+        "NOTE": "Hello world",
     }
 
     v = Converter(data)
