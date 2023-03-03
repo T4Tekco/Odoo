@@ -1,5 +1,7 @@
 """
-Ref: https://www.rfc-editor.org/rfc/rfc6350
+Ref:
+    - https://en.wikipedia.org/wiki/VCard
+    - https://www.rfc-editor.org/rfc/rfc6350
 Format:
 
 BEGIN:VCARD
@@ -9,8 +11,8 @@ END:VCARD
 
 ----
 # ALL Version
-ADR
-BDAY
+- ADR
+- BDAY
 CATEGORIES
 - EMAIL
 - FN
@@ -63,7 +65,7 @@ class VCard:
     TODO: ADR, BDAY, CATEGORIES, EMAIL, FN, GEO, KEY, LOGO, N, NOTE, ORG, PHOTO
     REV, ROLE, SOUND, SOURCE, TEL, TITLE, TZ, UID, URL
 
-    DONE: FN, N, EMAIL, ORG, TEL
+    DONE: FN, N, EMAIL, ORG, TEL, ADR, BDAY, CATEGORIES
     """
 
     version = ""
@@ -78,8 +80,10 @@ class VCard:
         middle_name: str = "",
         honorific_prefixes: str = "",
         honorific_suffixes: str = "",
+        *args: str,
     ):
-        return f"N:{last_name};{first_name};{middle_name};{honorific_prefixes};{honorific_suffixes}\n"
+        s = ";".join(args)
+        return f"N:{last_name};{first_name};{middle_name};{honorific_prefixes};{honorific_suffixes};{s}\n"
 
     def _FN(self, full_name: str):
         return f"FN:{full_name}\n"
@@ -120,11 +124,41 @@ class VCard:
             else ""
         )
 
-    def _BDAY(self):
-        pass
+    def _ADR(self, *elements):
+        """
+        street: str,
+        locality: str,
+        region: str,
+        code: str,
+        country: str,
+        _type: str,
 
-    def _CATEGORIES(self):
-        pass
+        example:
+        [
+            ("287 Au Duong Lan", "Q8", "HCM", "70000", "VN","home"),
+            ("287 Au Duong Lan", "Q8", "HCM", "70000", "VN","work"),
+        ]
+        """
+
+        def adr(
+            street: str,
+            locality: str,
+            region: str,
+            code: str,
+            country: str,
+            _type: str,
+        ):
+            return f"ADR;TYPE={_type}:;;{street};{locality};{region};{code};{country}\n"
+
+        return "".join(adr(*e) for e in elements)
+
+    def _BDAY(self, bday: str):
+        """Example BDAY:19700310"""
+
+        return f"BDAY:{bday}\n"
+
+    def _CATEGORIES(self, *categories):
+        return f"CATEGORIES:" + ",".join(categories) + "\n"
 
     def _TITLE(self):
         pass
@@ -140,11 +174,14 @@ class VCard:
             raise ValueError("Version must be '2.1' or '3.0' or '4.0'")
 
         output = (
-            self._N(**self._data["N"])
+            self._N(*self._data["N"])
             + self._FN(self._data["FN"])
             + self._ORG(*self._data["ORG"])
             + self._EMAIL(*self._data["EMAIL"])
             + self._TEL(*self._data["TEL"])
+            + self._ADR(*self._data["ADR"])
+            + self._BDAY(self._data["BDAY"])
+            + self._CATEGORIES(*self._data["CATEGORIES"])
         )
 
         return f"VERSION:{self.version}\n" + output
@@ -190,7 +227,7 @@ class Converter:
 if __name__ == "__main__":
     data = {
         "version": "4.0",
-        "N": {"first_name": "Vy", "last_name": "Nguyen", "middle_name": "The"},
+        "N": ("Vy", "Nguyen", "The", "Dr", "PhD", "H", "C"),
         "FN": "Nguyen The Vy",
         "ORG": ("T4Tek", "Vua Backend", "Hoang De Odoo"),
         "EMAIL": (
@@ -201,6 +238,13 @@ if __name__ == "__main__":
             {"phone": "+84987654321", "type": ("home", "work", "business")},
             {"phone": "+84987654333", "type": ("cell",)},
         ),
+        "ADR": (
+            ("287 Au Duong Lan", "", "HCM", "70000", "VN", "home"),
+            ("287 Au Duong Lan", "", "HCM", "70000", "VN", "work"),
+        ),
+        "BDAY": "20000403",
+        "CATEGORIES": ("IT", "Wibu Lord", "Alime"),
     }
+
     v = Converter(data)
     v.write_to_vcf()
