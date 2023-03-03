@@ -69,6 +69,8 @@ class VCard:
     """
 
     version = ""
+    p_single = ("BDAY",)
+    p_args = ("EMAIL", "ORG", "TEL", "ADR", "CATEGORIES")
 
     def __init__(self, data):
         self._data = data
@@ -173,21 +175,29 @@ class VCard:
         if self.version not in ("2.1", "3.0", "4.0"):
             raise ValueError("Version must be '2.1' or '3.0' or '4.0'")
 
-        output = (
-            self._N(*self._data["N"])
-            + self._FN(self._data["FN"])
-            + self._ORG(*self._data["ORG"])
-            + self._EMAIL(*self._data["EMAIL"])
-            + self._TEL(*self._data["TEL"])
-            + self._ADR(*self._data["ADR"])
-            + self._BDAY(self._data["BDAY"])
-            + self._CATEGORIES(*self._data["CATEGORIES"])
-        )
+        if not self._data.get("N") or not self._data.get("FN"):
+            raise ValueError("Required fields: 'N', 'FN'")
+
+        output = self._N(*self._data["N"]) + self._FN(self._data["FN"])
+
+        for att in self.p_single:
+            a = self._data.get(att)
+            if a:
+                output += getattr(self, f"_{att}")(a)
+
+        for att in self.p_args:
+            args = self._data.get(att)
+            if args:
+                output += getattr(self, f"_{att}")(*args)
 
         return f"VERSION:{self.version}\n" + output
 
+    def _build_extra_data(self):
+        """Override this method for another vcard version"""
+        return ""
+
     def build_data(self):
-        return f"BEGIN:VCARD\n{self._build_data()}\nEND:VCARD"
+        return f"BEGIN:VCARD\n{self._build_data()}{self._build_extra_data()}\nEND:VCARD"
 
 
 class VCard21(VCard):
@@ -229,21 +239,21 @@ if __name__ == "__main__":
         "version": "4.0",
         "N": ("Vy", "Nguyen", "The", "Dr", "PhD", "H", "C"),
         "FN": "Nguyen The Vy",
-        "ORG": ("T4Tek", "Vua Backend", "Hoang De Odoo"),
-        "EMAIL": (
-            {"email": "abc@t4tek.co", "type": "work"},
-            {"email": "abc2@t4tek.co", "type": "home"},
-        ),
-        "TEL": (
-            {"phone": "+84987654321", "type": ("home", "work", "business")},
-            {"phone": "+84987654333", "type": ("cell",)},
-        ),
-        "ADR": (
-            ("287 Au Duong Lan", "", "HCM", "70000", "VN", "home"),
-            ("287 Au Duong Lan", "", "HCM", "70000", "VN", "work"),
-        ),
-        "BDAY": "20000403",
-        "CATEGORIES": ("IT", "Wibu Lord", "Alime"),
+        # "ORG": ("T4Tek", "Vua Backend", "Hoang De Odoo"),
+        # "EMAIL": (
+        #     {"email": "abc@t4tek.co", "type": "work"},
+        #     {"email": "abc2@t4tek.co", "type": "home"},
+        # ),
+        # "TEL": (
+        #     {"phone": "+84987654321", "type": ("home", "work", "business")},
+        #     {"phone": "+84987654333", "type": ("cell",)},
+        # ),
+        # "ADR": (
+        #     ("287 Au Duong Lan", "", "HCM", "70000", "VN", "home"),
+        #     ("287 Au Duong Lan", "", "HCM", "70000", "VN", "work"),
+        # ),
+        # "BDAY": "20000403",
+        # "CATEGORIES": ("IT", "Wibu Lord", "Alime"),
     }
 
     v = Converter(data)
