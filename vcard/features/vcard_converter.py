@@ -56,21 +56,22 @@ RELATED
 SORT-STRING
 XML
 """
+from datetime import datetime
 
 
 class VCard:
     """
     Common (All versions)
 
-    TODO: ADR, BDAY, CATEGORIES, EMAIL, FN, GEO, KEY, LOGO, N, NOTE, ORG, PHOTO
-    REV, ROLE, SOUND, SOURCE, TEL, TITLE, TZ, UID, URL
+    TODO: GEO, KEY, LOGO, NOTE, PHOTO
+    SOUND, SOURCE, TZ, UID
 
-    DONE: FN, N, EMAIL, ORG, TEL, ADR, BDAY, CATEGORIES
+    DONE: FN, N, EMAIL, ORG, TEL, ADR, BDAY, CATEGORIES, TITLE, URL, TZ, REV
     """
 
     version = ""
-    p_single = ("BDAY",)
-    p_args = ("EMAIL", "ORG", "TEL", "ADR", "CATEGORIES")
+    p_single = ("BDAY", "TITLE", "ROLE", "TZ", "REV")
+    p_args = ("EMAIL", "ORG", "TEL", "ADR", "CATEGORIES", "URL")
 
     def __init__(self, data):
         self._data = data
@@ -162,14 +163,44 @@ class VCard:
     def _CATEGORIES(self, *categories):
         return f"CATEGORIES:" + ",".join(categories) + "\n"
 
-    def _TITLE(self):
-        pass
+    def _TITLE(self, title: str):
+        return f"TITLE:{title}\n"
+
+    def _ROLE(self, role: str):
+        return f"ROLE:{role}\n"
+
+    def _TZ(self, tz):
+        return f"TZ:{tz}\n"
 
     def _UID(self):
         pass
 
-    def _URL(self):
-        pass
+    def _URL(self, *elements):
+        """
+        element
+        {
+            url: str,
+            type: str, eg: home, work, blahblah....
+        }
+        """
+
+        def url(type, url):
+            return f"URL;TYPE={type}:{url}\n"
+
+        return "".join(url(*e) for e in elements)
+
+    def _REV(self, timestamp):
+        """Example:
+        REV:19951031T222710Z
+
+        Updated time
+
+        >>> from datetime import datetime
+        >>> dt = datetime.now()
+        >>> dt.strftime("%Y%m%dT%H%M%SZ")
+
+        """
+        return f"REV:{timestamp}\n"
 
     def _build_data(self):
         if self.version not in ("2.1", "3.0", "4.0"):
@@ -239,21 +270,30 @@ if __name__ == "__main__":
         "version": "4.0",
         "N": ("Vy", "Nguyen", "The", "Dr", "PhD", "H", "C"),
         "FN": "Nguyen The Vy",
-        # "ORG": ("T4Tek", "Vua Backend", "Hoang De Odoo"),
-        # "EMAIL": (
-        #     {"email": "abc@t4tek.co", "type": "work"},
-        #     {"email": "abc2@t4tek.co", "type": "home"},
-        # ),
-        # "TEL": (
-        #     {"phone": "+84987654321", "type": ("home", "work", "business")},
-        #     {"phone": "+84987654333", "type": ("cell",)},
-        # ),
-        # "ADR": (
-        #     ("287 Au Duong Lan", "", "HCM", "70000", "VN", "home"),
-        #     ("287 Au Duong Lan", "", "HCM", "70000", "VN", "work"),
-        # ),
-        # "BDAY": "20000403",
-        # "CATEGORIES": ("IT", "Wibu Lord", "Alime"),
+        "ORG": ("T4Tek", "Vua Backend", "Hoang De Odoo"),
+        "EMAIL": (
+            {"email": "abc@t4tek.co", "type": "work"},
+            {"email": "abc2@t4tek.co", "type": "home"},
+        ),
+        "TEL": (
+            {"phone": "+84987654321", "type": ("home", "work", "business")},
+            {"phone": "+84987654333", "type": ("cell",)},
+        ),
+        "ADR": (
+            ("287 Au Duong Lan", "", "HCM", "70000", "VN", "home"),
+            ("287 Au Duong Lan", "", "HCM", "70000", "VN", "work"),
+        ),
+        "BDAY": "20000403",
+        "CATEGORIES": ("IT", "Wibu Lord", "Alime"),
+        "ROLE": "Backend Developer",
+        "TITLE": "Wibu Lord",
+        "TZ": "Vietnam/Ho_Chi_Minh",
+        "URL": (
+            ("home", "https://elearning.t4tek.tk/"),
+            ("work", "https://labs.t4tek.tk/"),
+            ("business", "https://github.com/T4Tekco"),
+        ),
+        "REV": datetime.now().strftime("%Y%m%dT%H%M%SZ"),
     }
 
     v = Converter(data)
