@@ -43,6 +43,7 @@
                         <field name="fax_ids" widget="many2many_tags" />
                         <field name="website_ids" widget="many2many_tags" />
                         <field name="email_ids" widget="many2many_tags" />
+                        <field name="social_list_ids" widget="many2many_tags" />
                     </group>
                     <group name="biz_industry_gr"
                         attrs="{'invisible': [('is_company', '=', False)]}">
