@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import vcard
+from . import res_partner
