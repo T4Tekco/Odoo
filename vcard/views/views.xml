@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="vcard.list">
+      <field name="name">vcard list</field>
+      <field name="model">vcard.vcard</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="vcard.action_window">
+      <field name="name">vcard window</field>
+      <field name="res_model">vcard.vcard</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="vcard.action_server">
+      <field name="name">vcard server</field>
+      <field name="model_id" ref="model_vcard_vcard"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="vcard" id="vcard.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="vcard.menu_1" parent="vcard.menu_root"/>
+    <menuitem name="Menu 2" id="vcard.menu_2" parent="vcard.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="vcard.menu_1_list" parent="vcard.menu_1"
+              action="vcard.action_window"/>
+    <menuitem name="Server to list" id="vcard" parent="vcard.menu_2"
+              action="vcard.action_server"/>
+-->
+  </data>
+</odoo>

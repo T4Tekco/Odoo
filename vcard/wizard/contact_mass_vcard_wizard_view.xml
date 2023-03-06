@@ -1,0 +1,27 @@
+<odoo>
+    <record id="view_form_t4contact_vcard_message" model="ir.ui.view">
+        <field name="name">T4Contact Mass vCard</field>
+        <field name="model">res.partner.t4.massvcard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="t4contact_ids" />
+                </group>
+                <footer>
+                    <button type="object" name="button_export_vcard"
+                        string="Export vCard" />
+                    <button special="cancel" string="Cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_t4contact_vcard" model="ir.actions.act_window">
+        <field name="name">Export vCard</field>
+        <field name="res_model">res.partner.t4.massvcard</field>
+        <field name="view_mode">form</field>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="binding_view_types">form,list</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
