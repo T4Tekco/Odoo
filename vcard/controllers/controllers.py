@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+import base64
 
 
-# class Vcard(http.Controller):
-#     @http.route('/vcard/vcard', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class Vcard(http.Controller):
+    @http.route("/web/vcard/download", auth="public")
+    def download_document(self, id, filename="contact.vcf", **kw):
+        filename = "contacts.vcf"
+        model = http.request.env["res.partner.t4.massvcard"]
+        vcard = model.search([["id", "=", id]])
 
-#     @http.route('/vcard/vcard/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('vcard.listing', {
-#             'root': '/vcard/vcard',
-#             'objects': http.request.env['vcard.vcard'].search([]),
-#         })
+        file_content = base64.b64decode(vcard.vcf_content)
 
-#     @http.route('/vcard/vcard/objects/<model("vcard.vcard"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('vcard.object', {
-#             'object': obj
-#         })
+        content_type = ("Content-Type", "text/vcard")
+        disposition_content = (
+            "Content-Disposition",
+            f"attachment; filename={filename}",
+        )
+
+        return http.request.make_response(
+            file_content, [content_type, disposition_content]
+        )
