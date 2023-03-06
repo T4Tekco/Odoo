@@ -155,6 +155,7 @@ class VCard:
             country: str = "",
             _type: str = "home",
         ):
+            street = street if street else ""
             locality = locality if locality else ""
             region = region if region else ""
             code = code if code else ""

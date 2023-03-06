@@ -42,27 +42,43 @@ class CheckoutMassMessage(models.TransientModel):
                         "version": "4.0",
                         "N": (contact.name,),
                         "FN": contact.name,
-                        "ORG": (contact.parent_id.name),
-                        "EMAIL":[{"type": "work", "email": e.email } for e in contact.email_ids],
-                        "TEL":[{"type": ("work",), "phone": e.phone } for e in contact.phone_ids],
-                        "ADR":[(contact.street,contact.city,contact.state_id.name,contact.zip,contact.country_id.name,"work")],
-                        "CATEGORIES":[e.name for e in contact.category_id],
-                        "ROLE":contact.title.name,
-                        "TITLE":contact.function,
-                        "TZ":contact.tz,
+                        "ORG": (contact.parent_id.name,),
+                        "EMAIL": [
+                            {"type": "work", "email": e.email}
+                            for e in contact.email_ids
+                        ],
+                        "TEL": [
+                            {"type": ("work",), "phone": e.phone}
+                            for e in contact.phone_ids
+                        ],
+                        "ADR": [
+                            (
+                                contact.street,
+                                contact.city,
+                                contact.state_id.name,
+                                contact.zip,
+                                contact.country_id.name,
+                                "work",
+                            )
+                        ],
+                        "CATEGORIES": [e.name for e in contact.category_id],
+                        "ROLE": contact.title.name,
+                        "TITLE": contact.function,
+                        "TZ": contact.tz,
                         "REV": contact.write_date.strftime("%Y%m%dT%H%M%SZ"),
                         "NOTE": "Test",
-                        "URL":[("work",e.website) for e in contact.website_ids],
+                        "URL": [("work", e.website) for e in contact.website_ids],
+                        "PHOTO": contact.image_1920,
                     }
                     # vCards["EMAIL"].append({"type": "main", "email": contact.email}),
-                    # vCards["TEL"].append({"type": "main", "phone": contact.phone}), 
+                    # vCards["TEL"].append({"type": "main", "phone": contact.phone}),
                     # vCards["URL"].append({"type": "main", "url": contact.website}),
                 ).convert()
                 + "\n"
             )
 
         self.vcf_content = base64.b64encode(str.encode(vCards))
-        _logger.info(vCards)
+        _logger.debug(vCards)
 
         return {
             "type": "ir.actions.act_url",
