@@ -12,7 +12,8 @@
     "version": "16.0.1.0.0",
     "depends": ["t4contact"],
     "data": [
-        # 'security/ir.model.access.csv',
+        "security/ir.model.access.csv",
+        "wizard/contact_mass_vcard_wizard_view.xml",
         "views/views.xml",
         "views/templates.xml",
     ],
