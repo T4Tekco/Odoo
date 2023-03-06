@@ -107,11 +107,12 @@ class VCard:
         }
         """
 
-        return (
-            "".join(f"EMAIL;TYPE={e['type']}:{e['email']}\n" for e in elements)
-            if elements
-            else ""
-        )
+        def email(_type, _email):
+            if _email:
+                return f"EMAIL;TYPE={_type}:{_email}\n"
+            return ""
+
+        return "".join(email(*e) for e in elements) if elements else ""
 
     def _TEL(self, *elements):
         """
@@ -120,16 +121,17 @@ class VCard:
 
         element:
         {
-            type: str,
+            types: (str, ...),
             phone: str,
         }
         """
 
-        return (
-            "".join(f'TEL;TYPE={",".join(e["type"])}:{e["phone"]}\n' for e in elements)
-            if elements
-            else ""
-        )
+        def tel(_types, phone):
+            if phone:
+                return f'TEL;TYPE={",".join(_types)}:{phone}\n'
+            return ""
+
+        return "".join(tel(*e) for e in elements) if elements else ""
 
     def _ADR(self, *elements):
         """
@@ -176,8 +178,10 @@ class VCard:
         }
         """
 
-        def url(type, url):
-            return f"URL;TYPE={type}:{url}\n"
+        def url(type: str, url: str):
+            if type and url:
+                return f"URL;TYPE={type}:{url}\n"
+            return ""
 
         return "".join(url(*e) for e in elements)
 

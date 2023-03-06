@@ -9,6 +9,11 @@ from ..features.vcard_converter import VCardCreator
 _logger = logging.getLogger(__name__)
 
 
+def _prepend_data(original, key, data: tuple):
+    if data:
+        original[key] = data + original[key]
+
+
 class CheckoutMassMessage(models.TransientModel):
     _name = "res.partner.t4.massvcard"
     _description = "Send message to Borrowers"
@@ -36,52 +41,45 @@ class CheckoutMassMessage(models.TransientModel):
         for contact in self.t4contact_ids:
             contact: Any
 
-            vCards += (
-                VCardCreator(
-                    {
-                        "version": "4.0",
-                        "N": (contact.name,),
-                        "FN": contact.name,
-                        "ORG": (contact.parent_id.name,),
-                        "EMAIL": [
-                            {"type": "work", "email": e.email}
-                            for e in contact.email_ids
-                        ],
-                        "TEL": [
-                            {"type": ("work",), "phone": e.phone}
-                            for e in contact.phone_ids
-                        ],
-                        "ADR": [
-                            (
-                                contact.street,
-                                contact.city,
-                                contact.state_id.name,
-                                contact.zip,
-                                contact.country_id.name,
-                                "work",
-                            )
-                        ],
-                        "CATEGORIES": [e.name for e in contact.category_id],
-                        "ROLE": contact.title.name,
-                        "TITLE": contact.function,
-                        "TZ": contact.tz,
-                        "REV": contact.write_date.strftime("%Y%m%dT%H%M%SZ"),
-                        "NOTE": "Test",
-                        "URL": [("work", e.website) for e in contact.website_ids],
-                        "PHOTO": contact.image_1920,
-                    }
-                    # vCards["EMAIL"].append({"type": "main", "email": contact.email}),
-                    # vCards["TEL"].append({"type": "main", "phone": contact.phone}),
-                    # vCards["URL"].append({"type": "main", "url": contact.website}),
-                ).convert()
-                + "\n"
-            )
+            data = {
+                "version": "4.0",
+                "N": (contact.name,),
+                "FN": contact.name,
+                "ORG": (contact.parent_id.name,),
+                "EMAIL": tuple(("work", e.email) for e in contact.email_ids),
+                "TEL": tuple((("work",), e.phone) for e in contact.phone_ids),
+                "ADR": (
+                    (
+                        contact.street,
+                        contact.city,
+                        contact.state_id.name,
+                        contact.zip,
+                        contact.country_id.name,
+                        "work",
+                    ),
+                ),
+                "CATEGORIES": tuple(e.name for e in contact.category_id),
+                "ROLE": contact.title.name,
+                "TITLE": contact.function,
+                "TZ": contact.tz,
+                "REV": contact.write_date.strftime("%Y%m%dT%H%M%SZ"),
+                "NOTE": "",
+                "URL": tuple(("work", e.website) for e in contact.website_ids),
+                "PHOTO": contact.image_1920,
+            }
+
+            _prepend_data(data, "EMAIL", (("home", contact.email),))
+            _prepend_data(data, "TEL", ((("home",), contact.phone),))
+            _prepend_data(data, "URL", (("home", contact.website),))
+
+            _logger.debug(data)
+
+            vCards += VCardCreator(data).convert() + "\n\n"
 
         self.vcf_content = base64.b64encode(str.encode(vCards))
-        _logger.debug(vCards)
 
         return {
             "type": "ir.actions.act_url",
-            "url": f"/web/vcard/download?model=res.partner.t4.massvcard&id={self.id}",
+            "url": f"/web/vcard/download?model=res.partner.t4.massvcard&id={self.id}",  # type: ignore
             "target": "self",
         }
