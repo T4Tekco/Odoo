@@ -148,13 +148,18 @@ class VCard:
         """
 
         def adr(
-            street: str,
-            locality: str,
-            region: str,
-            code: str,
-            country: str,
-            _type: str,
+            street: str = "",
+            locality: str = "",
+            region: str = "",
+            code: str = "",
+            country: str = "",
+            _type: str = "home",
         ):
+            street = street if street else ""
+            locality = locality if locality else ""
+            region = region if region else ""
+            code = code if code else ""
+            country = country if country else ""
             return f"ADR;TYPE={_type}:;;{street};{locality};{region};{code};{country}\n"
 
         return "".join(adr(*e) for e in elements) if elements else ""
