@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="bizcard.list">
+      <field name="name">bizcard list</field>
+      <field name="model">bizcard.bizcard</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="bizcard.action_window">
+      <field name="name">bizcard window</field>
+      <field name="res_model">bizcard.bizcard</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="bizcard.action_server">
+      <field name="name">bizcard server</field>
+      <field name="model_id" ref="model_bizcard_bizcard"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="bizcard" id="bizcard.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="bizcard.menu_1" parent="bizcard.menu_root"/>
+    <menuitem name="Menu 2" id="bizcard.menu_2" parent="bizcard.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="bizcard.menu_1_list" parent="bizcard.menu_1"
+              action="bizcard.action_window"/>
+    <menuitem name="Server to list" id="bizcard" parent="bizcard.menu_2"
+              action="bizcard.action_server"/>
+-->
+  </data>
+</odoo>
