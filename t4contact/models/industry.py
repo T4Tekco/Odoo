@@ -9,7 +9,7 @@ class BizIndustry(models.Model):
     name = fields.Char("Industry Name")
     code = fields.Char("Industry Code", unique=True)
     company_ids = fields.One2many(
-        "res.partner", string="Companies Main", inverse_name="main_industry_id"
+        "res.partner", string="Companies Main", inverse_name="main_industry_id", invisible = '1'
     )
 
     industry_ids = fields.Many2many(
