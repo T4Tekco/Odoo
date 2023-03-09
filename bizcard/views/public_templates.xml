@@ -1,0 +1,12 @@
+<odoo>
+  <template id="branding">
+    <t t-call="web.frontend_layout">
+      <t t-set="title">
+        <t t-out="contact.name" />
+      </t>
+      <div>
+        <t t-out="contact.branding_content" />
+      </div>
+    </t>
+  </template>
+</odoo>
