@@ -16,6 +16,7 @@
         "security/ir.model.access.csv",
         "views/res_partner_view.xml",
         "views/contact_view.xml",
+        "views/industry_view.xml"
     ],
     "demo": [
         "demo/demo.xml",

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="industry" model="ir.ui.view">
+        <field name="name">Book Form</field>
+        <field name="model">biz.industry</field>
+        <field name="arch" type="xml">
+            <form string="Industry">
+                <sheet>
+                    <!-- Content -->
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="name" />
+                        </group>
+                        <group name="group_right">
+                            <field name="code"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
+
