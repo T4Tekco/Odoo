@@ -22,10 +22,12 @@
     </template>
 
     <!-- 
-        Using WYSIWYG
+        Using Odoo WYSIWYG
         Required: forum module
         form class -> o_wprofile_editor_form
         textarea class -> o_wysiwyg_loader
+
+        OR using external library
      -->
 
     <template id="branding_portal">

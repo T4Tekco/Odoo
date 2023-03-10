@@ -10,7 +10,7 @@
     "website": "https://t4tek.co/",
     "category": "Productivity/BizCard",
     "version": "16.0.1.0.0",
-    "depends": ["portal", "t4contact"],
+    "depends": ["web", "portal", "t4contact"],
     "data": [
         # "security/ir.model.access.csv",
         "views/res_partner_views.xml",

@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="t4_suneditor_wysiwyg.list">
+      <field name="name">t4_suneditor_wysiwyg list</field>
+      <field name="model">t4_suneditor_wysiwyg.t4_suneditor_wysiwyg</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="t4_suneditor_wysiwyg.action_window">
+      <field name="name">t4_suneditor_wysiwyg window</field>
+      <field name="res_model">t4_suneditor_wysiwyg.t4_suneditor_wysiwyg</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="t4_suneditor_wysiwyg.action_server">
+      <field name="name">t4_suneditor_wysiwyg server</field>
+      <field name="model_id" ref="model_t4_suneditor_wysiwyg_t4_suneditor_wysiwyg"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="t4_suneditor_wysiwyg" id="t4_suneditor_wysiwyg.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="t4_suneditor_wysiwyg.menu_1" parent="t4_suneditor_wysiwyg.menu_root"/>
+    <menuitem name="Menu 2" id="t4_suneditor_wysiwyg.menu_2" parent="t4_suneditor_wysiwyg.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="t4_suneditor_wysiwyg.menu_1_list" parent="t4_suneditor_wysiwyg.menu_1"
+              action="t4_suneditor_wysiwyg.action_window"/>
+    <menuitem name="Server to list" id="t4_suneditor_wysiwyg" parent="t4_suneditor_wysiwyg.menu_2"
+              action="t4_suneditor_wysiwyg.action_server"/>
+-->
+  </data>
+</odoo>
