@@ -8,8 +8,9 @@
     """,
     "author": "T4Tek Team",
     "website": "https://t4tek.co/",
-    "category": "Website/BizCard",
+    "category": "T4/Website",
     "version": "16.0.1.0.0",
-    "depends": ["website_partner"],
+    "depends": ["t4", "website"],
     "data": [],
+    "license": "LGPL-3",
 }

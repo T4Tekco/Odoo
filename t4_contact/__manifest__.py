@@ -8,18 +8,19 @@
     """,
     "author": "T4Tek Team",
     "website": "https://t4tek.co",
-    "category": "Productivity/T4Contact",
+    "category": "T4/Contact",
     "version": "16.0.1.0.0",
-    "depends": ["base"],
+    "depends": ["t4"],
     "data": [
         "security/biz_security.xml",
         "security/ir.model.access.csv",
         "views/res_partner_view.xml",
         "views/contact_view.xml",
-        "views/industry_view.xml"
+        "views/industry_view.xml",
     ],
     "demo": [
         "demo/demo.xml",
     ],
+    "license": "LGPL-3",
     "application": True,
 }

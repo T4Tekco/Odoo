@@ -6,9 +6,9 @@
     "description": """Hello World""",
     "author": "T4Tek Team",
     "website": "https://t4tek.co/",
-    "category": "Website/Editor",
+    "category": "T4/HTMLEditor",
     "version": "16.0.1.0.0",
-    "depends": ["base", "web"],
+    "depends": ["t4", "web"],
     "data": [],
     "assets": {
         "web.assets_backend": [
@@ -20,5 +20,6 @@
             "t4_suneditor_wysiwyg/static/src/js/**/*",
         ],
     },
+    "license": "LGPL-3",
     "application": False,
 }
