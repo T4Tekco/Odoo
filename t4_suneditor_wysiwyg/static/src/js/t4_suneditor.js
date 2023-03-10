@@ -10,7 +10,28 @@ odoo.define("t4_suneditor_wysiwyg.t4_suneditor", function (require) {
      */
     start: function () {
       let _input = this.el;
-      let t4_editor = window.SUNEDITOR.create(_input);
+      let t4_editor = window.SUNEDITOR.create(_input, {
+        display: "block",
+        width: "100%",
+        height: "auto",
+        charCounter: true,
+        charCounterLabel: "Characters :",
+        buttonList: [
+          // default
+          ["undo", "redo"],
+          ["font", "fontSize", "formatBlock"],
+          ["paragraphStyle", "blockquote"],
+          ["bold", "underline", "italic", "strike", "subscript", "superscript"],
+          ["fontColor", "hiliteColor", "textStyle"],
+          ["removeFormat"],
+          ["outdent", "indent"],
+          ["align", "horizontalRule", "list", "lineHeight"],
+          ["table", "link", "image", "video", "audio"],
+          ["imageGallery"],
+          ["fullScreen", "showBlocks", "codeView"],
+          ["preview", "print"],
+        ],
+      });
 
       t4_editor.onChange = () => {
         _input.value = t4_editor.getContents();
