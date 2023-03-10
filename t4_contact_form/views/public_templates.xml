@@ -1,10 +1,14 @@
 <odoo>
   <template id="branding">
     <t>
-      <t t-set="title">
-        <t t-out="contact.name" />
-      </t>
-      <t t-esc="contact.branding_content" />
+      <head>
+        <title>
+          <t t-out="contact.name" />
+        </title>
+      </head>
+      <body>
+        <t t-esc="contact.branding_content" />
+      </body>
     </t>
   </template>
 </odoo>

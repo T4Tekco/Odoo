@@ -1,5 +1,6 @@
-import io
 import base64
+import io
+
 from PIL import Image
 
 __all__ = ["ImageExtractor"]

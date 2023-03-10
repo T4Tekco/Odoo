@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "bizcard_web",
+    "name": "T4 Web",
     "summary": """
         Frontend lam""",
     "description": """

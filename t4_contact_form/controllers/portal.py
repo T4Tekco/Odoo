@@ -21,7 +21,7 @@ class PortalContact(http.Controller):
 
         values = {"contact": partner}
 
-        return http.request.render("bizcard.contact_detail_portal", values)
+        return http.request.render("t4_contact_form.contact_detail_portal", values)
 
     @http.route("/my/branding", auth="user", website=True)
     def contact_content(self, **post):
@@ -34,4 +34,4 @@ class PortalContact(http.Controller):
         values = {
             "content": partner.branding_content,
         }
-        return http.request.render("bizcard.branding_portal", values)
+        return http.request.render("t4_contact_form.branding_portal", values)

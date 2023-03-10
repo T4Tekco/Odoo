@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from odoo import http
 import base64
 
+from odoo import http
 
-class Vcard(http.Controller):
+
+class VCard(http.Controller):
     @http.route("/web/vcard/download", auth="public")
     def download_document(self, id, filename="contact.vcf", **kw):
         filename = "contacts.vcf"

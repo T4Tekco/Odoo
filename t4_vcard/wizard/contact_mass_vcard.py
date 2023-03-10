@@ -1,10 +1,10 @@
-import logging
 import base64
+import logging
 from typing import Any
-from odoo import api, models, fields, exceptions
+
+from odoo import api, exceptions, fields, models
 
 from ..features.vcard_converter import VCardCreator
-
 
 _logger = logging.getLogger(__name__)
 

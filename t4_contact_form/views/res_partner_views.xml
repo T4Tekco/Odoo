@@ -1,7 +1,6 @@
 <odoo>
-
-    <record id="view_contact_form_biz_extend" model="ir.ui.view">
-        <field name="name">Partner: Biz Extend</field>
+    <record id="view_contact_form_t4_extend" model="ir.ui.view">
+        <field name="name">Partner: T4 Extend</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
