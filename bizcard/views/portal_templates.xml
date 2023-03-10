@@ -1,3 +1,82 @@
 <odoo>
+    <!-- <template id="portal_my_home" inherit_id="portal.portal_my_home" priority="100"
+        name="My Contact" customize_show="True">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Contact Info</t>
+                <t t-set="url" t-value="'/my/contact'" />
+                <t t-set="placeholder_count" t-value="10" />
+            </t>
+        </xpath>
+    </template> -->
 
+    <template id="contact_detail_portal">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <form action="/my/contact" method="post">
+                    <t t-call="bizcard.contact_fields" />
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <!-- 
+        Using WYSIWYG
+        Required: forum module
+        form class -> o_wprofile_editor_form
+        textarea class -> o_wysiwyg_loader
+     -->
+
+    <template id="branding_portal">
+        <t t-call="portal.portal_layout">
+            <div>
+                <form action="/my/branding" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                    <textarea id="content" class="form-control" name="branding_content">
+                        <t t-esc="content"></t>
+                    </textarea>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="my_account_link" name="T4 Extend" inherit_id="portal.my_account_link">
+        <xpath expr="//*[@id='o_logout_divider']" position="before">
+            <a href="/my/contact" role="menuitem" class="dropdown-item ps-3">
+                <i class="fa fa-solid fa-heart me-1 small text-muted" /> My Contact </a>
+        </xpath>
+    </template>
+
+    <!-- Form Sample -->
+    <template id="contact_fields">
+        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+        <div class="form-group">
+            <label for="contact_name">Name</label>
+            <input type="text" name="name" class="form-control" id="contact_name"
+                t-att-value="contact.name" />
+        </div>
+        <div class="form-group">
+            <label for="contact_job_position">Job Position</label>
+            <input type="text" name="function" class="form-control" id="contact_job_position"
+                t-att-value="contact.function" />
+        </div>
+        <div class="form-group">
+            <label for="contact_phone">Phone</label>
+            <input type="text" name="phone" class="form-control" id="contact_phone"
+                t-att-value="contact.phone" />
+        </div>
+        <div class="form-group">
+            <label for="contact_mobile">Mobile</label>
+            <input type="text" name="mobile" class="form-control" id="contact_mobile"
+                t-att-value="contact.mobile" />
+        </div>
+        <div class="form-group">
+            <label for="contact_email">Email</label>
+            <input type="email" name="email" class="form-control" id="contact_email"
+                t-att-value="contact.email" />
+        </div>
+    </template>
 </odoo>

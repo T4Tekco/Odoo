@@ -13,6 +13,7 @@
     "depends": ["portal", "t4contact"],
     "data": [
         # "security/ir.model.access.csv",
+        "views/res_partner_views.xml",
         "views/portal_templates.xml",
         "views/public_templates.xml",
     ],
