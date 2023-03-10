@@ -3,21 +3,21 @@
     "name": "T4 Suneditor WYSIWYG",
     "summary": """
         Add Suneditor WYSIWYG""",
-    "description": """
-        ....
-    """,
+    "description": """Hello World""",
     "author": "T4Tek Team",
     "website": "https://t4tek.co/",
     "category": "Website/Editor",
     "version": "16.0.1.0.0",
-    "depends": ["web"],
+    "depends": ["base", "web"],
     "data": [],
     "assets": {
         "web.assets_backend": [
-            "bizcard/static/src/suneditor/**/*",
+            "t4_suneditor_wysiwyg/static/src/suneditor/**/*",
+            "t4_suneditor_wysiwyg/static/src/js/**/*",
         ],
         "web.assets_frontend": [
-            "bizcard/static/src/suneditor/**/*",
+            "t4_suneditor_wysiwyg/static/src/suneditor/**/*",
+            "t4_suneditor_wysiwyg/static/src/js/**/*",
         ],
     },
     "application": False,
