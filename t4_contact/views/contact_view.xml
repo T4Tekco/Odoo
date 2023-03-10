@@ -63,7 +63,7 @@
     <!-- menu social -->
     <record id="action_social" model="ir.actions.act_window">
         <field name="name">Social Network</field>
-        <field name="res_model">res.partner</field>
+        <field name="res_model">t4.social_network</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
     <menuitem id="menu_social" name="Social Network" parent="menu_info" action="action_social" />

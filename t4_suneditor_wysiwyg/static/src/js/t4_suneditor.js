@@ -27,7 +27,6 @@ odoo.define("t4_suneditor_wysiwyg.t4_suneditor", function (require) {
           ["outdent", "indent"],
           ["align", "horizontalRule", "list", "lineHeight"],
           ["table", "link", "image", "video", "audio"],
-          ["imageGallery"],
           ["fullScreen", "showBlocks", "codeView"],
           ["preview", "print"],
         ],
