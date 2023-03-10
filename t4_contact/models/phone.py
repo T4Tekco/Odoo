@@ -1,8 +1,8 @@
-from odoo import models, fields
+from odoo import fields, models
 
 
-class BizPhone(models.Model):
-    _name = "biz.phone"
+class T4Phone(models.Model):
+    _name = "t4.phone"
     _description = "Dien thoai cua chi nhanh"
     _rec_name = "phone"
 

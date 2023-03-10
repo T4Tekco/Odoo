@@ -1,6 +1,6 @@
 <odoo>
     <!-- Simple form -->
-    <record id="view_contact_simple_form_biz_extend" model="ir.ui.view">
+    <record id="view_contact_simple_form_t4_extend" model="ir.ui.view">
         <field name="name">Simple Partner: T4 Extend</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_simple_form" />
@@ -12,7 +12,7 @@
     </record>
 
     <!-- Form -->
-    <record id="view_contact_form_biz_extend" model="ir.ui.view">
+    <record id="view_contact_form_t4_extend" model="ir.ui.view">
         <field name="name">Partner: T4 Extend</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
@@ -38,14 +38,14 @@
             <xpath expr="//group" position="inside">
                 <hr class="mt-3 mb-3" />
                 <group colspan="2">
-                    <group name="biz_info_gr">
+                    <group name="t4_info_gr">
                         <field name="phone_ids" widget="many2many_tags" />
                         <field name="fax_ids" widget="many2many_tags" />
                         <field name="website_ids" widget="many2many_tags" />
                         <field name="email_ids" widget="many2many_tags" />
                         <field name="social_list_ids" widget="many2many_tags" />
                     </group>
-                    <group name="biz_industry_gr"
+                    <group name="t4_industry_gr"
                         attrs="{'invisible': [('is_company', '=', False)]}">
                         <field name="main_industry_id" />
                         <field name="industry_ids" widget="many2many_tags" />

@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- menu contact -->
-    <menuitem id="t4_contact_menu" name="T4 Contact" />
+    <!-- T4 -->
+    <menuitem id="t4_contact_menu" name="T4" />
+
+    <!-- Contact -->
     <record id="action_t4_contact" model="ir.actions.act_window">
         <field name="name">Contact</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
-    <menuitem id="menu_contact" name="Contact" parent="t4_contact_menu" action='action_t4_contact' />
-    <!-- menu insudtry -->
-     <record id="action_industry" model="ir.actions.act_window">
-        <field name="name">Industry</field>
-        <field name="res_model">biz.industry</field>
-        <field name="view_mode">tree,form,kanban</field>
-    </record>
-    <menuitem id="menu_industry" name="Industry" parent="menu_info" action="action_industry" />
-    <!-- menu infor -->
+    <menuitem id="menu_t4_contact" name="Contact" parent="t4_contact_menu"
+        action='action_t4_contact' />
+
+    <!-- menu information -->
     <record id="action_info" model="ir.actions.act_window">
         <field name="name">Info</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_info" name="Info" parent="menu_contact" action="action_info" />
+    <menuitem id="menu_info" name="Info" parent="t4_contact_menu" action="action_info" />
+
+    <!-- menu industry -->
+    <record id="action_industry" model="ir.actions.act_window">
+        <field name="name">Industry</field>
+        <field name="res_model">t4.industry</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+    <menuitem id="menu_industry" name="Industry" parent="menu_info" action="action_industry" />
+
     <!-- menu email -->
-    <record id="action_biz_email" model="ir.actions.act_window">
+    <record id="action_t4_email" model="ir.actions.act_window">
         <field name="name">Email</field>
-        <field name="res_model">biz.email</field>
+        <field name="res_model">t4.email</field>
         <field name="view_mode">tree,form,kanban</field>
-
     </record>
-    <menuitem id="contact_email" name="Email" parent="menu_info" action="action_biz_email" />
+    <menuitem id="contact_email" name="Email" parent="menu_info" action="action_t4_email" />
+
     <!-- menu phone -->
-
-    <record id="action_biz_phone" model="ir.actions.act_window">
+    <record id="action_t4_phone" model="ir.actions.act_window">
         <field name="name">Phone</field>
-        <field name="res_model">biz.phone</field>
+        <field name="res_model">t4.phone</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
-    <menuitem id="contact_phone" name="Phone" parent="menu_info" action="action_biz_phone" />
+    <menuitem id="contact_phone" name="Phone" parent="menu_info" action="action_t4_phone" />
 
     <!-- menu fax -->
-
-    <record id="action_biz_fax" model="ir.actions.act_window">
+    <record id="action_t4_fax" model="ir.actions.act_window">
         <field name="name">Fax</field>
-        <field name="res_model">biz.fax</field>
+        <field name="res_model">t4.fax</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
-    <menuitem id="contact_fax" name="Fax" parent="menu_info" action="action_biz_fax" />
-    <!-- menu website -->
+    <menuitem id="contact_fax" name="Fax" parent="menu_info" action="action_t4_fax" />
 
-    <record id="action_biz_website" model="ir.actions.act_window">
+    <!-- menu website -->
+    <record id="action_t4_website" model="ir.actions.act_window">
         <field name="name">Website</field>
-        <field name="res_model">biz.website</field>
+        <field name="res_model">t4.website</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
-    <menuitem id="contact_website" name="Website" parent="menu_info" action="action_biz_website" />
+    <menuitem id="contact_website" name="Website" parent="menu_info" action="action_t4_website" />
 
     <!-- menu social -->
-   <record id="action_social" model="ir.actions.act_window">
+    <record id="action_social" model="ir.actions.act_window">
         <field name="name">Social Network</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form,kanban</field>

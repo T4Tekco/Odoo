@@ -1,8 +1,8 @@
-from odoo import models, fields
+from odoo import fields, models
 
 
-class BizFax(models.Model):
-    _name = "biz.fax"
+class T4Fax(models.Model):
+    _name = "t4.fax"
     _description = "Fax cua chi nhanh"
     _rec_name = "fax"
 

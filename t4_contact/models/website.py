@@ -1,8 +1,8 @@
-from odoo import models, fields
+from odoo import fields, models
 
 
-class BizWebsite(models.Model):
-    _name = "biz.website"
+class T4Website(models.Model):
+    _name = "t4.website"
     _description = "Website cua chi nhanh"
     _rec_name = "website"
 

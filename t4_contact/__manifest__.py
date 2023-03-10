@@ -12,7 +12,7 @@
     "version": "16.0.1.0.0",
     "depends": ["t4"],
     "data": [
-        "security/biz_security.xml",
+        "security/t4_contact_security.xml",
         "security/ir.model.access.csv",
         "views/res_partner_view.xml",
         "views/contact_view.xml",

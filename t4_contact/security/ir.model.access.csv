@@ -1,18 +1,18 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-t4.access_bizcard_industry_user,User,t4contact.model_biz_industry,t4_group_user,1,0,0,0
-t4.access_bizcard_industry_manager,Manager,t4contact.model_biz_industry,t4_group_manager,1,1,1,1
+t4.access_t4_industry_user,User,t4_contact.model_t4_industry,t4_group_user,1,0,0,0
+t4.access_t4_industry_manager,Manager,t4_contact.model_t4_industry,t4_group_manager,1,1,1,1
 
-t4.access_bizcard_phone_user,User,t4contact.model_biz_phone,t4_group_user,1,1,0,1
-t4.access_bizcard_phone_manager,Manager,t4contact.model_biz_phone,t4_group_manager,1,1,1,1
+t4.access_t4_phone_user,User,t4_contact.model_t4_phone,t4_group_user,1,1,0,1
+t4.access_t4_phone_manager,Manager,t4_contact.model_t4_phone,t4_group_manager,1,1,1,1
 
-t4.access_bizcard_fax_user,User,t4contact.model_biz_fax,t4_group_user,1,1,0,1
-t4.access_bizcard_fax_manager,Manager,t4contact.model_biz_fax,t4_group_manager,1,1,1,1
+t4.access_t4_fax_user,User,t4_contact.model_t4_fax,t4_group_user,1,1,0,1
+t4.access_t4_fax_manager,Manager,t4_contact.model_t4_fax,t4_group_manager,1,1,1,1
 
-t4.access_bizcard_email_user,User,t4contact.model_biz_email,t4_group_user,1,1,0,1
-t4.access_bizcard_email_manager,Manager,t4contact.model_biz_email,t4_group_manager,1,1,1,1
+t4.access_t4_email_user,User,t4_contact.model_t4_email,t4_group_user,1,1,0,1
+t4.access_t4_email_manager,Manager,t4_contact.model_t4_email,t4_group_manager,1,1,1,1
 
-t4.access_bizcard_website_user,User,t4contact.model_biz_website,t4_group_user,1,1,0,1
-t4.access_bizcard_website_manager,Manager,t4contact.model_biz_website,t4_group_manager,1,1,1,1
+t4.access_t4_website_user,User,t4_contact.model_t4_website,t4_group_user,1,1,0,1
+t4.access_t4_website_manager,Manager,t4_contact.model_t4_website,t4_group_manager,1,1,1,1
 
-t4.access_bizcard_social_user,User,t4contact.model_biz_social_network,t4_group_user,1,1,0,1
-t4.access_bizcard_social_manager,Manager,t4contact.model_biz_social_network,t4_group_manager,1,1,1,1
+t4.access_t4_social_user,User,t4_contact.model_t4_social_network,t4_group_user,1,1,0,1
+t4.access_t4_social_manager,Manager,t4_contact.model_t4_social_network,t4_group_manager,1,1,1,1
