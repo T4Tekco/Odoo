@@ -28,6 +28,7 @@
         textarea class -> o_wysiwyg_loader
 
         OR using external library
+        eg: suneditor
      -->
 
     <template id="branding_portal">
@@ -35,6 +36,7 @@
             <div>
                 <form action="/my/branding" method="post">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                    <label for="content">Content: Body</label>
                     <textarea id="content" class="t4_suneditor form-control" name="branding_content">
                         <t t-esc="content"></t>
                     </textarea>
@@ -52,7 +54,8 @@
         </xpath>
     </template>
 
-    <!-- Form Sample -->
+    <!-- Form Input -->
+    <!-- FRONTEND TEAM: Extend here -->
     <template id="contact_fields">
         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
         <div class="form-group">

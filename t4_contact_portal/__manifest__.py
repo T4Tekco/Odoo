@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "T4 Contact Form",
-    "summary": """This module provide base form for Portal users""",
+    "name": "T4 Contact Portal",
+    "summary": """Just Portal for external user""",
     "description": """
         Long description of module's purpose
     """,
@@ -17,5 +17,5 @@
         "views/public_templates.xml",
     ],
     "license": "LGPL-3",
-    "application": True,
+    "application": False,
 }

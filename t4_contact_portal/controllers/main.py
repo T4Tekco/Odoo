@@ -12,4 +12,4 @@ class BrandingPage(http.Controller):
         values = {
             "contact": contact,
         }
-        return http.request.render("t4_contact_form.branding", values)
+        return http.request.render("t4_contact_portal.branding", values)
