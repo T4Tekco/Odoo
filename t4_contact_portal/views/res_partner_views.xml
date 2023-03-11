@@ -7,7 +7,7 @@
             <xpath expr="//group" position="inside">
                 <separator />
                 <group colspan="2">
-                    <field name="branding_content" widget="html"
+                    <field name="website_description" widget="html"
                         options="{'collaborative': true, 'resizable': true}" />
                 </group>
             </xpath>

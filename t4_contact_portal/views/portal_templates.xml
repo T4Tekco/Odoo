@@ -37,7 +37,8 @@
                 <form action="/my/branding" method="post">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                     <label for="content">Content: Body</label>
-                    <textarea id="content" class="t4_suneditor form-control" name="branding_content">
+                    <textarea id="content" class="t4_suneditor form-control"
+                        name="website_description">
                         <t t-esc="content"></t>
                     </textarea>
                     <button type="submit" class="btn btn-primary">Submit</button>

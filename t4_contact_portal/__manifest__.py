@@ -9,7 +9,7 @@
     "website": "https://t4tek.co/",
     "category": "T4/Contact",
     "version": "16.0.1.0.0",
-    "depends": ["t4", "t4_contact", "portal"],
+    "depends": ["t4", "t4_contact", "website_partner"],
     "data": [
         # "security/ir.model.access.csv",
         "views/res_partner_views.xml",

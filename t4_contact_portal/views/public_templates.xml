@@ -1,13 +1,22 @@
 <odoo>
-  <template id="branding">
+  <template id="branding_page">
     <t>
       <head>
         <title>
-          <t t-out="contact.name" />
+          <t t-if="contact">
+            <t t-out="contact.name" />
+          </t>
+          <t t-else="">
+            Not Found
+          </t>
         </title>
       </head>
       <body>
-        <t t-esc="contact.branding_content" />
+        <div>
+          <t t-if="contact">
+            <div t-field="contact.website_description" />
+          </t>
+        </div>
       </body>
     </t>
   </template>
