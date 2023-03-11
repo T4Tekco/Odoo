@@ -14,7 +14,7 @@
         <t t-call="portal.portal_layout">
             <div class="container">
                 <form action="/my/contact" method="post">
-                    <t t-call="t4_contact_form.contact_fields" />
+                    <t t-call="t4_contact_portal.contact_fields" />
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
