@@ -84,5 +84,20 @@
             <input type="email" name="email" class="form-control" id="contact_email"
                 t-att-value="contact.email" />
         </div>
+
+        <!-- 
+            example: website_custom_url = "vyngt"
+            then: Branding URL -> http(s)://domain/c/vyngt
+                                                                                   ^^^^^
+            another example: website_custom_url = "vua Backend.123"
+            slugify(website_custom_url) -> "vua-backend-123"
+            then: Branding URL -> http(s)://domain/c/vua-backend-123
+         -->
+        <div class="form-group">
+            <label for="contact_website_custom_url">Custom URL</label>
+            <input type="text" name="website_custom_url" class="form-control"
+                id="website_custom_url"
+                t-att-value="contact.website_custom_url" />
+        </div>
     </template>
 </odoo>

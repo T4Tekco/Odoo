@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 
 class PortalContact(http.Controller):
-    FIELDS = ("name", "function", "email", "phone", "mobile")
+    FIELDS = ("name", "function", "email", "phone", "mobile", "website_custom_url")
 
     @http.route("/my/contact", auth="user", website=True)
     def contact_detail(self, redirect=False, **post):
