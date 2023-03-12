@@ -11,13 +11,9 @@
     "depends": ["t4", "web"],
     "data": [],
     "assets": {
-        "web.assets_backend": [
-            "t4_suneditor_wysiwyg/static/src/suneditor/**/*",
-            "t4_suneditor_wysiwyg/static/src/js/**/*",
-        ],
         "web.assets_frontend": [
             "t4_suneditor_wysiwyg/static/src/suneditor/**/*",
-            "t4_suneditor_wysiwyg/static/src/js/**/*",
+            "t4_suneditor_wysiwyg/static/src/js/frontend/**/*",
         ],
     },
     "license": "LGPL-3",
