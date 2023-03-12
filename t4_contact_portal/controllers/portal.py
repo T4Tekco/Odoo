@@ -28,10 +28,14 @@ class PortalContact(http.Controller):
         partner = http.request.env.user.partner_id
 
         if post and http.request.httprequest.method == "POST":
-            _data = {"website_description": post.get("website_description")}
+            _data = {
+                "website_description": post.get("website_description"),
+                "website_description_css": post.get("website_description_css"),
+            }
             partner.sudo().write(_data)
 
         values = {
             "content": partner.website_description,
+            "content_style": partner.website_description_css,
         }
         return http.request.render("t4_contact_portal.branding_portal", values)

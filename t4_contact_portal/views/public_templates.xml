@@ -10,6 +10,11 @@
             Not Found
           </t>
         </title>
+        <style>
+          <t t-if="contact">
+            <t t-out="contact.website_description_css" />
+          </t>
+        </style>
       </head>
       <body>
         <div>

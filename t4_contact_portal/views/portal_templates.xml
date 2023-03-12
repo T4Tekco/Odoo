@@ -36,11 +36,19 @@
             <div>
                 <form action="/my/branding" method="post">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                    <label for="content">Content: Body</label>
+                    <!-- <label for="content">Content: Body</label>
                     <textarea id="content" class="t4_suneditor form-control"
                         name="website_description">
                         <t t-esc="content"></t>
-                    </textarea>
+                    </textarea> -->
+
+                    <div id="t4_grapesjs" class="form-control">
+                        <input type="hidden" id="t4_form_css" name="website_description_css"
+                            t-att-value="content_style" />
+                        <input type="hidden" id="t4_form_body" name="website_description"
+                            t-att-value="content" />
+                        <div id="t4_grapesjs_editor"></div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

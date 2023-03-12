@@ -19,6 +19,8 @@ class T4Contact(models.Model):
         sanitize_attributes=False,
     )
 
+    website_description_css = fields.Char("Web Style")
+
     # Branding Page custom URL
     website_custom_url = fields.Char("Custom URL")
 
