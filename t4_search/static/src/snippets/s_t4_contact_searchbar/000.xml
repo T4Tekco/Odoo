@@ -1,3 +1,28 @@
-<odoo>
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
 
-</odoo>
+    <!-- Search Bar autocomplete item -->
+<div t-name="t4_search.s_t4_contact_searchbar.autocomplete"
+    class="o_dropdown_menu show w-100">
+    <t t-if="!results.length">
+        <span class="dropdown-item-text">
+            <span class="text-muted">No results found. Please try another search.</span>
+        </span>
+    </t>
+    <t t-foreach="results" t-as="result">
+        <a t-att-href="result.id" class="dropdown-item p-2 text-wrap">
+            <div class="d-flex align-items-center o_search_result_item">
+                <div class="o_search_result_item_detail px-3">
+                    <div t-attf-class="h6 fw-bold">
+                        <t t-out="result.name" />
+                    </div>
+                </div>
+            </div>
+        </a>
+    </t>
+    <t >
+        <button type="submit" class="dropdown-item text-center text-primary">All results</button>
+    </t>
+</div>
+
+</templates>
