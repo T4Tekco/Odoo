@@ -10,7 +10,7 @@
         </span>
     </t>
     <t t-foreach="results" t-as="result">
-        <a t-att-href="result.id" class="dropdown-item p-2 text-wrap">
+        <a t-att-href="result.web_url" class="dropdown-item p-2 text-wrap">
             <div class="d-flex align-items-center o_search_result_item">
                 <div class="o_search_result_item_detail px-3">
                     <div t-attf-class="h6 fw-bold">

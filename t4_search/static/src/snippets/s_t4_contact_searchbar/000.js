@@ -13,21 +13,26 @@ export default public_widget.registry.t4_contact_searchbar =
       let _form = this.el;
       let _input = _form.querySelector(".t4_search_query");
 
+      _form.onfocusout = () => {
+        setTimeout(() => this._cleanup(), 100);
+      };
+
       let _timeout = null;
 
       _input.oninput = (ev) => {
         if (_timeout != null) {
           clearTimeout(_timeout);
         }
-        _timeout = setTimeout(() => this._search(ev.target.value.trim()), 2000);
+        _timeout = setTimeout(() => this._search(ev.target.value.trim()), 1234);
       };
     },
 
     _search: function (query) {
       if (!query) {
+        this._cleanup();
         return;
       }
-      console.log(query);
+
       this._rpc({
         route: "/s/contacts",
         params: { query: query },
@@ -40,15 +45,9 @@ export default public_widget.registry.t4_contact_searchbar =
       let _form = this.el;
       let template = "t4_search.s_t4_contact_searchbar.autocomplete";
 
-      if (!data.length) {
-        _form.classList.remove("dropdown");
-        _form.classList.remove("show");
-        return;
-      }
+      this._cleanup();
 
       // Rendered
-      console.log(data);
-      console.log(_form);
 
       let output = qweb.render(template, {
         results: data,
@@ -56,10 +55,24 @@ export default public_widget.registry.t4_contact_searchbar =
       let div = document.createElement("div");
 
       div.innerHTML = output;
+      div.classList.add("t4_contact_result");
 
       _form.append(div);
 
       _form.classList.add("dropdown");
       _form.classList.add("show");
+    },
+
+    _cleanup: function () {
+      let _form = this.el;
+      _form.classList.remove("dropdown");
+      _form.classList.remove("show");
+
+      let div = _form.querySelector(".t4_contact_result");
+      if (div !== null) {
+        div.remove();
+      }
+
+      return;
     },
   });

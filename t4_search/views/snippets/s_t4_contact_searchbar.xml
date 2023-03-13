@@ -1,7 +1,7 @@
 <odoo>
 
     <template id="s_t4_contact_searchbar_input" name="Search">
-        <form class="t4_search_form" action="/s/contacts" method="get">
+        <form class="t4_search_form" action="/search/contacts" method="get">
             <div class="form-group">
                 <input class="t4_search_query form-control" name="query" />
             </div>
