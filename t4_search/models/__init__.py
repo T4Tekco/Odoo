@@ -1,4 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models
-from . import t4_search
+from . import res_partner, t4_search

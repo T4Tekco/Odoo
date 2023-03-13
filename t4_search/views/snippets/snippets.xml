@@ -1,0 +1,8 @@
+<odoo>
+    <template id="t4_snippets" inherit_id="website.snippets" name="T4 Snippets">
+        <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="t4_search.s_t4_contact_searchbar"
+                t-thumbnail="/website/static/src/img/snippets_thumbs/s_searchbar.svg" />
+        </xpath>
+    </template>
+</odoo>
