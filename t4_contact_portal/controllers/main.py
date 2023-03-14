@@ -24,13 +24,10 @@ class BrandingPage(WebsitePartnerPage):
         return http.request.not_found()
 
     def render_content(self, contact):
-        if contact:
-            values = {
-                "contact": contact,
-            }
-            return http.request.render("t4_contact_portal.branding_page", values)
-
-        return http.request.not_found()
+        values = {
+            "contact": contact,
+        }
+        return http.request.render("t4_contact_portal.branding_page", values)
 
     @http.route("/contacts/<int:contact_id>", type="http", auth="public", website=True)
     def partners_detail(self, contact_id, **kw):
