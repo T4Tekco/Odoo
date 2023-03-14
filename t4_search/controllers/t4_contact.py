@@ -7,6 +7,11 @@ _logger = logging.getLogger(__name__)
 
 
 class T4Search(http.Controller):
+    FIELDS = ("name", "website_custom_url")
+
+    def _get_fields(self):
+        return self.FIELDS
+
     def _get_domain(self, **kw):
         query = kw.get("query", "")
 
@@ -25,13 +30,14 @@ class T4Search(http.Controller):
 
     def _prepare_data(self, **kw):
         domain = self._get_domain(**kw)
+        fields = self._get_fields()
 
         contacts = (
             http.request.env["res.partner"]
             .sudo()
             .search_read(
                 domain,
-                ("name", "website_custom_url"),
+                fields,
                 limit=kw.get("limit", 0),
             )
         )
