@@ -13,7 +13,7 @@
             <div class="results">
                 <t t-foreach="contacts" t-as="contact">
                     <div>
-                        <t t-out="contact.name" />
+                        <t t-out="contact['name']" />
                     </div>
                 </t>
             </div>
