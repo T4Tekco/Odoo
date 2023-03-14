@@ -29,6 +29,9 @@ class T4Search(http.Controller):
             yield contact
 
     def _prepare_data(self, **kw):
+        _logger.info(kw)
+        _logger.info(kw.get("query"))
+
         domain = self._get_domain(**kw)
         fields = self._get_fields()
 
@@ -48,11 +51,13 @@ class T4Search(http.Controller):
 
     @http.route("/s/contacts/", auth="public", type="json", methods=["GET", "POST"])
     def fetch_contacts(self, **kw):
-        _logger.info(kw)
-        _logger.info(kw.get("query"))
-
         return list(self._prepare_data(**kw))
 
-    @http.route("/search/contacts", auth="public", type="http", methods=["GET"])
+    @http.route(
+        "/search/contacts", auth="public", type="http", methods=["GET"], website=True
+    )
     def render_search(self, **kw):
-        return str(list(self._prepare_data(**kw)))
+        data = list(self._prepare_data(**kw))
+        values = {"contacts": data}
+
+        return http.request.render("t4_search.t4_contact_search_page", values)
