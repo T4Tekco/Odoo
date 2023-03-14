@@ -12,7 +12,7 @@ class T4Contact(models.Model):
     )
 
     def _default_privacy_search(self):
-        return False
+        return True
 
     def _default_privacy_view(self):
-        return False
+        return True
