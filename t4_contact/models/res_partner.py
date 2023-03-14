@@ -6,6 +6,7 @@ from odoo import api, fields, models
 class Contact(models.Model):
     _description = "T4 Contact"
     _inherit = "res.partner"
+    _order = "priority desc, name"
 
     main_industry_id = fields.Many2one("t4.industry", string="Main Industry")
 
@@ -50,4 +51,14 @@ class Contact(models.Model):
     # ---Social nextwork
     social_list_ids = fields.One2many(
         "t4.social_network", "company_id", string="Social Network"
+    )
+    #  --- Search Primacy
+    search_accept = fields.Boolean("Accept Search", default="True")
+    priority = fields.Selection(
+        [
+            ("0", "Normal"),
+            ("1", "Favorite"),
+        ],
+        default="0",
+        string="Favorite",
     )
