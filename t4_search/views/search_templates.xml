@@ -1,0 +1,23 @@
+<odoo>
+    <template id="t4_contact_search_page">
+        <t t-call="website.layout">
+            <t t-set="title">Contacts Search</t>
+            <div>
+                <form action="/search/contacts" method="get">
+                    <label for="t4_search_input">Search</label>
+                    <input id="t4_search_input" name="query" />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <div class="results">
+                <t t-foreach="contacts" t-as="contact">
+                    <div>
+                        <t t-out="contact.name" />
+                    </div>
+                </t>
+            </div>
+
+        </t>
+    </template>
+</odoo>

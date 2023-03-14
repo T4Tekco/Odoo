@@ -13,6 +13,7 @@
     "version": "16.0.1.0.0",
     "depends": ["t4", "t4_contact", "t4_contact_portal"],
     "data": [
+        "views/search_templates.xml",
         "views/snippets/snippets.xml",
         "views/snippets/s_t4_contact_searchbar.xml",
         "views/search_views_privacy.xml",
