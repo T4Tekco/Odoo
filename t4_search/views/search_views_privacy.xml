@@ -28,14 +28,14 @@
                 </h1>
              </div> -->
              <div name="options">
-                        <span class="d-inline-block">
-                            <field name="privacy_search"/>
-                            <label for="privacy_search"/>
-                        </span>
-                        <span class="d-inline-block">
-                            <field name="privacy_view"/>
-                            <label for="privacy_view"/>
-                        </span>
+                <span class="d-inline-block">
+                    <field name="privacy_search"/>
+                    <label for="privacy_search"/>
+                </span>
+                <span class="d-inline-block">
+                    <field name="privacy_view"/>
+                    <label for="privacy_view"/>
+                </span>
              </div>
             </div>
             <separator />
