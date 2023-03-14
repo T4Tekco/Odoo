@@ -1,15 +1,13 @@
 <odoo>
-    <record id="view_contact_form_t4_extend" model="ir.ui.view">
+    <record id="view_contact_form_t4_portal_extend" model="ir.ui.view">
         <field name="name">Partner: T4 Extend</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="inherit_id" ref="t4_contact.view_contact_form_t4_extend" />
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
                 <separator />
                 <group colspan="2">
                     <field name="website_custom_url" />
-                    <field name="website_description" widget="html"
-                        options="{'collaborative': true, 'resizable': true}" />
                 </group>
             </xpath>
         </field>

@@ -28,6 +28,11 @@ class T4Contact(models.Model):
         ("t4_website_custom_url", "UNIQUE(website_custom_url)", "Already exists")
     ]
 
+    @api.onchange("website_custom_url")
+    def _auto_slugify(self):
+        _url = slugify(self.website_custom_url)
+        self.website_custom_url = _url
+
     def write(self, vals):
         if s := vals.get("website_custom_url"):
             if s := str(s).strip():
