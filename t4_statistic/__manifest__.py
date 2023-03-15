@@ -13,7 +13,5 @@
     "depends": ["t4", "t4_contact"],
     "data": [
         # 'security/ir.model.access.csv',
-        "views/views.xml",
-        "views/templates.xml",
     ],
 }
