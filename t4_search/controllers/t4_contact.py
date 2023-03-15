@@ -12,7 +12,7 @@ class T4Search(http.Controller):
     def _get_fields(self):
         return self.FIELDS
 
-    def _get_domain(self, **kw):
+    def get_domain(self, **kw):
         query = kw.get("query", "")
 
         domain = [("name", "ilike", query), ("privacy_search", "=", True)]
@@ -32,7 +32,7 @@ class T4Search(http.Controller):
         _logger.info(kw)
         _logger.info(kw.get("query"))
 
-        domain = self._get_domain(**kw)
+        domain = self.get_domain(**kw)
         fields = self._get_fields()
 
         contacts = (
