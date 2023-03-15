@@ -19,14 +19,6 @@
         <field name="arch" type="xml">
            <xpath expr="//h1" position ="after" >
            <div>
-             <!-- <div class="oe_title">
-                <lable for="name" string="User Name"></lable>
-                <h1>
-                    <div class="d-flex">
-
-                    </div>
-                </h1>
-             </div> -->
              <div name="options">
                 <span class="d-inline-block">
                     <field name="privacy_search"/>
@@ -35,6 +27,10 @@
                 <span class="d-inline-block">
                     <field name="privacy_view"/>
                     <label for="privacy_view"/>
+                </span>
+                <span class="d-inline-block">
+                    <field name="priority" widget="priority" class="me-3"/>
+                    <label for="priority" />
                 </span>
              </div>
             </div>

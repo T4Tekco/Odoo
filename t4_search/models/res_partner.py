@@ -17,11 +17,11 @@ class T4Contact(models.Model):
     def _default_privacy_view(self):
         return True
 
-    # priority = fields.Selection(
-    #     [
-    #         ("0", "Normal"),
-    #         ("1", "Favorite"),
-    #     ],
-    #     default="0",
-    #     string="Favorite",
-    # )
+    priority = fields.Selection(
+        [
+            ("0", "Normal"),
+            ("1", "Favorite"),
+        ],
+        default="0",
+        string="Favorite",
+    )
