@@ -12,6 +12,8 @@
     "version": "16.0.1.0.0",
     "depends": ["t4", "t4_contact", "t4_search"],
     "data": [
-        # 'security/ir.model.access.csv',
+        "security/t4_track_security.xml",
+        "security/ir.model.access.csv",
+        "views/statistic_views.xml",
     ],
 }
