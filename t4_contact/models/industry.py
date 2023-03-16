@@ -15,7 +15,7 @@ class T4Industry(models.Model):
         invisible="1",
     )
 
-    industry_ids = fields.Many2many(
+    sub_company_ids = fields.Many2many(
         "res.partner", relation="industry_rel", string="Companies Sub"
     )
     _sql_constraints = [
