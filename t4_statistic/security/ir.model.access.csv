@@ -1,3 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 t4.access_t4_statistic_t4_statistic_user,User,t4_statistic.model_t4_track,t4_visitor_user,1,0,0,0
 t4.access_t4_statistic_t4_statistic_manager,Manager,t4_statistic.model_t4_track,t4_visitor_manager,1,0,0,0
+
+t4.access_t4_statistic_t4_track_contact_user,User,t4_statistic.model_t4_track_contact,t4_visitor_user,1,0,0,0
+t4.access_t4_statistic_t4_track_contact_manager,Manager,t4_statistic.model_t4_track_contact,t4_visitor_manager,1,0,0,0
+
+t4.access_t4_statistic_t4_track_type_user,User,t4_statistic.model_t4_track_contact_type,t4_visitor_user,1,0,0,0
+t4.access_t4_statistic_t4_track_type_manager,Manager,t4_statistic.model_t4_track_contact_type,t4_visitor_manager,1,0,0,0

@@ -1,0 +1,22 @@
+<odoo noupdate="1">
+    <record id="track_search" model="t4.track.contact.type">
+        <field name="name">Search</field>
+        <field name="sequence">10</field>
+        <field name="state">search</field>
+    </record>
+    <record id="track_branding" model="t4.track.contact.type">
+        <field name="name">Branding</field>
+        <field name="sequence">20</field>
+        <field name="state">branding</field>
+    </record>
+    <record id="track_contact" model="t4.track.contact.type">
+        <field name="name">Contact</field>
+        <field name="sequence">30</field>
+        <field name="state">contact</field>
+    </record>
+    <record id="track_download" model="t4.track.contact.type">
+        <field name="name">Download</field>
+        <field name="sequence">40</field>
+        <field name="state">download</field>
+    </record>
+</odoo>
