@@ -1,0 +1,17 @@
+<odoo>
+  <!-- Menu reporting -->
+   <record id="action_reporting" model="ir.actions.act_window">
+        <field name="name">Reporting</field>
+        <!-- <field name="res_model">res.partner</field> -->
+    </record>
+    <menuitem id="menu_reporting" name="Reporting" parent="t4_contact.t4_contact_menu" action="action_reporting" />
+  <!-- Menu Visitor -->
+   <record id="action_vistitor" model="ir.actions.act_window">
+        <field name="name">Search Viewer</field>
+        <field name="res_model">t4.track</field>
+        <field name="view_mode">tree,form,kanban,graph</field>
+    </record>
+    <menuitem id="menu_visitor" name="Visitors" parent="menu_reporting" action="action_vistitor" />
+    
+  
+</odoo>

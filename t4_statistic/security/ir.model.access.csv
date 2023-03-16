@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_t4_statistic_t4_statistic,t4_statistic.t4_statistic,model_t4_statistic_t4_statistic,base.group_user,1,1,1,1
+t4.access_t4_statistic_t4_statistic,User,t4_statistic.model_t4_track,t4_visitor_user,1,0,0,0
+t4.access_t4_statistic_t4_statistic,Manager,t4_statistic.model_t4_track,t4_visitor_manager,1,0,0,0
