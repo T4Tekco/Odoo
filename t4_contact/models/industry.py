@@ -7,7 +7,7 @@ class T4Industry(models.Model):
     _rec_name = "code"
 
     name = fields.Char("Industry Name")
-    code = fields.Char("Industry Code", unique=True)
+    code = fields.Char("Industry Code", required=True)
     company_ids = fields.One2many(
         "res.partner",
         string="Companies Main",
