@@ -1,19 +1,19 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="t4_statistic.list">
-      <field name="name">t4_statistic list</field>
-      <field name="model">t4_statistic.t4_statistic</field>
+
+    <record model="ir.ui.view" id="t4_track_list">
+      <field name="name">T4 Track List</field>
+      <field name="model">t4.track</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="industry_id"/>
+          <field name="tag_ids" widget ="many2many_tags"/>
+          <field name="search_datetime"/>
         </tree>
       </field>
     </record>
--->
+
 
     <!-- actions opening views on models -->
 <!--

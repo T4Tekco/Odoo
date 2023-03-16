@@ -14,6 +14,7 @@
     "data": [
         "security/t4_track_security.xml",
         "security/ir.model.access.csv",
-        "views/statistic_views.xml",
+        "views/statistic_view.xml",
+        "views/statistic_menu.xml",
     ],
 }
