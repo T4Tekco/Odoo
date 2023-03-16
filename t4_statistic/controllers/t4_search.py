@@ -32,6 +32,9 @@ class T4SearchKeyword(T4Search):
 
         _i = _i.id if _i else None
 
+        if not categories and not _i:
+            return
+
         data = {"tag_ids": [c.id for c in categories], "industry_id": _i}
 
         track.sudo().create(data)
@@ -46,3 +49,17 @@ class T4SearchKeyword(T4Search):
         self.track_record(industry, keywords)
 
         return domain
+
+    def track_contact_search(self, contact_ids):
+        if not contact_ids:
+            return
+
+        _logger.info(contact_ids)
+        track_contact = http.request.env["t4.track.contact"]
+        track_contact.sudo().create({"contact_ids": contact_ids})
+
+    def get_recordset(self, *args, **kw):
+        recordset = super().get_recordset(*args, **kw)
+
+        self.track_contact_search([r["id"] for r in recordset])
+        return recordset

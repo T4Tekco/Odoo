@@ -22,12 +22,10 @@ class T4Track(models.Model):
 
     @api.model
     def create(self, vals_list):
-        _logger.info(vals_list)
         new_record = super().create(vals_list)
+
         _logger.info(new_record.tag_ids)  # type: ignore
-
         self._update_count(new_record.tag_ids, new_record.industry_id)  # type: ignore
-
         return new_record
 
     @api.model
@@ -36,10 +34,10 @@ class T4Track(models.Model):
             return False
 
         if _industry:
-            _industry.write({"search_count": _industry.search_count + 1})
+            _industry.write({"search_portal_count": _industry.search_portal_count + 1})
 
         for _c in _categories:
-            _c.write({"search_count": _c.search_count + 1})
+            _c.write({"search_portal_count": _c.search_portal_count + 1})
 
         return True
 
@@ -66,14 +64,33 @@ class T4TrackContact(models.Model):
     def _group_expand_type_id(self, types, domain, order):
         return types.search([], order=order)
 
-    track_id = fields.Many2many(
+    track_id = fields.Many2one(
         "t4.track.contact.type",
-        relation="track_type_rel",
         default=_default_track_type_id,
         group_expand="_group_expand_type_id",
     )
 
     track_state = fields.Selection(related="track_id.state")
+
+    def update_contact_record(self, contacts, track_type):
+        TRACK_FIELD = {
+            "search": "search_portal_count",
+            "branding": "branding_view_count",
+            "contact": "contact_view_count",
+            "download": "vcard_download_count",
+        }
+
+        for c in contacts:
+            field = TRACK_FIELD[track_type]
+            c.write({field: getattr(c, field) + 1})
+
+    @api.model
+    def create(self, vals_list):
+        new_record = super().create(vals_list)
+
+        self.update_contact_record(new_record.contact_ids, new_record.track_state)  # type: ignore
+
+        return new_record
 
 
 class T4TrackContactType(models.Model):

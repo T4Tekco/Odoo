@@ -28,13 +28,7 @@ class T4Search(http.Controller):
 
             yield contact
 
-    def _prepare_data(self, **kw):
-        _logger.info(kw)
-        _logger.info(kw.get("query"))
-
-        domain = self.get_domain(**kw)
-        fields = self._get_fields()
-
+    def get_recordset(self, domain, fields, **kw):
         contacts = (
             http.request.env["res.partner"]
             .sudo()
@@ -45,6 +39,15 @@ class T4Search(http.Controller):
             )
         )
 
+        return contacts
+
+    def _prepare_data(self, **kw):
+        _logger.info(f"query: {kw}")
+
+        domain = self.get_domain(**kw)
+        fields = self._get_fields()
+
+        contacts = self.get_recordset(domain, fields, **kw)
         contacts = self._process_contact_url(contacts)
 
         return contacts
