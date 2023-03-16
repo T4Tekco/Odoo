@@ -22,7 +22,7 @@ class T4Contact(models.Model):
     website_description_css = fields.Char("Web Style")
 
     # Branding Page custom URL
-    website_custom_url = fields.Char("Custom URL")
+    website_custom_url = fields.Char("Custom URL", default="")
 
     _sql_constraints = [
         ("t4_website_custom_url", "UNIQUE(website_custom_url)", "Already exists")
