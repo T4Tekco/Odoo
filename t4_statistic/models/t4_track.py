@@ -91,14 +91,3 @@ class T4TrackContactType(models.Model):
             ("download", "vCard Download"),
         ],
     )
-
-
-class WebsiteVisitors(models.Model):
-    _name = "t4.website.visitors"
-    _description = "all vistor before will render in page"
-    _inherit = "t4.track"
-
-    create_date = fields.Datetime("First Connection", readonly=True)
-    last_connection_datetime = fields.Datetime(
-        "Last Connection", default=fields.Datetime.now, readonly=True
-    )
