@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+from typing import Iterable
 
 from odoo import http
 from odoo.addons.t4_search.controllers.t4_contact import T4Search  # type: ignore
@@ -10,9 +11,10 @@ _logger = logging.getLogger(__name__)
 class T4SearchKeyword(T4Search):
     """Track after search"""
 
-    def get_keywords_domain(self, keywords):
+    def get_keywords_domain(self, keywords: Iterable[str]):
         for keyword in keywords:
-            yield ("category_id.name", "=", keyword.strip())
+            if k := keyword.strip():
+                yield ("category_id.name", "=", k)
 
     def track_record(self, _industry=None, _keywords=None):
         category = http.request.env["res.partner.category"]
@@ -44,7 +46,13 @@ class T4SearchKeyword(T4Search):
 
         keywords = kw.get("keywords", "").split(",")
         industry = kw.get("industry", "").strip()
+
+        # if industry:
+        #     domain += [(,)]
+
         domain += list(self.get_keywords_domain(keywords))
+
+        _logger.info(domain)
 
         self.track_record(industry, keywords)
 
