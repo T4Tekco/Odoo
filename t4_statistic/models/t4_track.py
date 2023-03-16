@@ -51,3 +51,15 @@ class T4TrackContact(models.Model):
     search_datetime = fields.Datetime(
         "Search Date", default=fields.Datetime.now, required=True, readonly=True
     )
+
+
+class WebsiteVisitors(models.Model):
+    _name = "t4.website.visitors"
+    _description = "all vistor before will render in page"
+    _inherit = "t4.track"
+
+
+create_date = fields.Datetime("First Connection", readonly=True)
+lasst_connection_datetime = fields.Datetime(
+    "Last Connection", default=fields.Datetime.now, readonly=True
+)
