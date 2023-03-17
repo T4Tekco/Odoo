@@ -1,6 +1,6 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
+    
 
     <record model="ir.ui.view" id="t4_track_list">
       <field name="name">T4 Track List</field>
@@ -13,48 +13,64 @@
         </tree>
       </field>
     </record>
-
-
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="t4_statistic.action_window">
-      <field name="name">t4_statistic window</field>
-      <field name="res_model">t4_statistic.t4_statistic</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="t4_statistic.action_server">
-      <field name="name">t4_statistic server</field>
-      <field name="model_id" ref="model_t4_statistic_t4_statistic"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
+    <!-- T4 track contact -->
+     <record model="ir.ui.view" id="t4_track_contact_history">
+      <field name="name">T4 Track Contact History</field>
+      <field name="model">t4.track.contact</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="track_state"/>
+          <field name="contact_ids" widget ="many2many_tags"/>
+          <field name="search_datetime"/>
+        </tree>
       </field>
     </record>
--->
+    <!-- Filter & Group By -->
+    <record id="t4_track_filter_and_groupby" model="ir.ui.view">
+      <field name="name">T4 Filter And Group By</field>
+      <field name="model">t4.track</field>
+      <field name="arch" type="xml">
+        <search string="Search Visitor">
+        <field name="search_datetime" invisible="1" />
+              <filter string="Last 7 Days" name="filter_last_7_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=7))]"/>
+              <filter string="Last 30 Days" name="filter_last_30_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=30))]"/>
+              <separator/>
+        </search>
+      </field>
+    </record>
+    <!-- Graph visitor -->
+      <record id="t4_view_graph_visitor" model="ir.ui.view">
+        <field name="name">T4 View Graph Visitor</field>
+        <field name="model">t4.track</field>
+        <field name="arch" type="xml">
+          <graph string="" stacked="false" type="line">
+              <field name="search_datetime" interval="day" />
+              <!-- <field name="contact_ids" widget="Many2many_tags"/> -->
+          </graph>
+        </field>
+      </record>
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="t4_statistic" id="t4_statistic.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="t4_statistic.menu_1" parent="t4_statistic.menu_root"/>
-    <menuitem name="Menu 2" id="t4_statistic.menu_2" parent="t4_statistic.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="t4_statistic.menu_1_list" parent="t4_statistic.menu_1"
-              action="t4_statistic.action_window"/>
-    <menuitem name="Server to list" id="t4_statistic" parent="t4_statistic.menu_2"
-              action="t4_statistic.action_server"/>
--->
+    <!-- Graph  -->
+      <record id="t4_view_graph" model="ir.ui.view">
+        <field name="name">T4 View Graph</field>
+        <field name="model">t4.track.contact</field>
+        <field name="arch" type="xml">
+          <graph string="" stacked="false" type="line">
+              <field name="search_datetime" interval="day" />
+              <!-- <field name="contact_ids" widget="Many2many_tags"/> -->
+          </graph>
+        </field>
+      </record>
+<!--     
+     <record id="t4_track_visitor_view_graph" model="ir.ui.view">
+        <field name="name"> T4 Visitor Graph</field>
+        <field name="model">t4.track</field>
+        <field name="arch" type="xml">
+            <graph string="Visitors" type="line" sample="1">
+                <field name="search_datetime" interval="day"/>
+            </graph>
+        </field>
+    </record> -->
+
   </data>
 </odoo>

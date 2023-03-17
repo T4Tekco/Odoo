@@ -12,6 +12,11 @@
         <field name="view_mode">tree,form,kanban,graph</field>
     </record>
     <menuitem id="menu_visitor" name="Visitors" parent="menu_reporting" action="action_vistitor" />
-    
-  
+    <!-- Contact History -->
+    <record id="action_contact_his" model="ir.actions.act_window">
+        <field name="name">Contact History</field>
+        <field name="res_model">t4.track.contact</field>
+        <field name="view_mode">tree,form,kanban,graph</field>
+    </record>
+    <menuitem id="menu_contact_his" name="Contact History" parent="menu_reporting" action="action_contact_his" />
 </odoo>
