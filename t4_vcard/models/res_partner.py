@@ -51,6 +51,8 @@ class T4Contact(models.Model):
     @api.model
     def convert_to_vcard(self):
         for contact in self:
-            return _convert_data(contact)
+            data = _convert_data(contact)
+            vcf = VCardCreator(data).convert()
+            return vcf
 
         return False

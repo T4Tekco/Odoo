@@ -38,7 +38,7 @@ class CheckoutMassMessage(models.TransientModel):
 
             _logger.debug(data)
 
-            vCards += VCardCreator(data).convert() + "\n\n"
+            vCards += data + "\n\n"
 
         self.vcf_content = base64.b64encode(str.encode(vCards))
 
