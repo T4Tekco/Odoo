@@ -42,9 +42,9 @@ class T4Search(http.Controller):
     def _process_contact_url(self, contacts):
         for contact in contacts:
             if contact["website_custom_url"]:
-                contact["web_url"] = f"/c/{contact['website_custom_url']}"
+                contact["web_url"] = f"/b/{contact['website_custom_url']}"
             else:
-                contact["web_url"] = f"/contacts/{contact['id']}"
+                contact["web_url"] = f"/branding/{contact['id']}"
 
             yield contact
 
