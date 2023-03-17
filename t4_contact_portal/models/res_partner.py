@@ -42,7 +42,7 @@ class T4Contact(models.Model):
     def _compute_website_url(self):
         super()._compute_website_url()  # type: ignore
         for partner in self:
-            partner.website_url = "/contacts/%s" % partner.id  # type: ignore
+            partner.website_url = "/branding/%s" % partner.id  # type: ignore
 
     def _default_is_published(self):
         return True

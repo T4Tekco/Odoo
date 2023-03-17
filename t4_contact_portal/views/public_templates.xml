@@ -25,4 +25,18 @@
       </body>
     </t>
   </template>
+
+  <!-- Dành cho các bạn frontend và fullstack -->
+  <template id="contact_page">
+    <t t-call="website.layout">
+      <t t-set="title">
+        <t t-out="contact.name"></t>
+      </t>
+      <div class="contact-layout">
+        <h1>
+          <t t-out="contact.name" />
+        </h1>
+      </div>
+    </t>
+  </template>
 </odoo>

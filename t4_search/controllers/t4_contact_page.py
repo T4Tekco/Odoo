@@ -1,7 +1,7 @@
-from odoo.addons.t4_contact_portal.controllers.main import BrandingPage  # type:ignore
+from odoo.addons.t4_contact_portal.controllers.main import ContactPage  # type:ignore
 
 
-class PrivacyBrandingPage(BrandingPage):
+class PrivacyContactPage(ContactPage):
     def is_permission(self, contact, user):
         is_perm = super().is_permission(contact, user)
         if is_perm:
