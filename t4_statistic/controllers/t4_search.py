@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import logging
-from typing import Iterable
 
 from odoo import http
 from odoo.addons.t4_search.controllers.search import T4Search  # type: ignore
