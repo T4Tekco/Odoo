@@ -1,6 +1,7 @@
 from odoo import api, fields, models
 
 
+# TODO: move privacy to "t4_contact"
 class T4Contact(models.Model):
     _inherit = "res.partner"
 
