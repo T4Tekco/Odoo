@@ -88,6 +88,8 @@ class T4TrackContact(models.Model):
     def create(self, vals_list):
         new_record = super().create(vals_list)
 
+        _logger.info("New Track Record")
+
         self.update_contact_record(new_record.contact_ids, new_record.track_state)  # type: ignore
 
         return new_record

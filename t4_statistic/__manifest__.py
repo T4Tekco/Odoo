@@ -10,7 +10,7 @@
     "website": "https://github.com/T4Tekco/Odoo",
     "category": "T4/Statistic",
     "version": "16.0.1.0.0",
-    "depends": ["t4", "t4_contact", "t4_search"],
+    "depends": ["t4", "t4_contact"],
     "data": [
         "data/track_type.xml",
         "security/t4_track_security.xml",

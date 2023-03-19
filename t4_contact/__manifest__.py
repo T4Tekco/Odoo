@@ -2,9 +2,9 @@
 {
     "name": "T4 Contact",
     "summary": """
-        Biz  card is product of company, with Biz card you can customize contact card and portfolio website""",
+        T4 Contact is product of company""",
     "description": """
-         Biz  card is product of company, with Biz card you can customize contact card and portfolio website
+         T4 Contact is product of company
     """,
     "author": "T4Tek Team",
     "website": "https://t4tek.co",
@@ -17,9 +17,6 @@
         "views/res_partner_view.xml",
         "views/contact_view.xml",
         "views/industry_view.xml",
-    ],
-    "demo": [
-        "demo/demo.xml",
     ],
     "license": "LGPL-3",
     "application": True,

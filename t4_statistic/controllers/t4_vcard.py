@@ -23,8 +23,9 @@ if VCardPublic:
             track.sudo().create({"contact_ids": [contact.id], "track_id": _type.id})
 
         def get_file(self, contact):
-            content = super()._prepare_file(contact)
+            content = super().get_file(contact)
             if content:
+                _logger.info(f"Track Download {contact}")
                 self.track_download(contact)
 
             return content

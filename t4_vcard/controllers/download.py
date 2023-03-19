@@ -28,11 +28,11 @@ class VCardWiz(http.Controller):
 
 
 class VCardPublic(http.Controller):
-    def is_permission(self):
+    def is_permission(self, contact, *args, **kwargs):
         return True
 
     def _prepare_file(self, contact):
-        if self.is_permission():
+        if self.is_permission(contact):
             filename = f"{contact.name}-{contact.id}.vcf"
             file_content = contact.convert_to_vcard().encode()
 
