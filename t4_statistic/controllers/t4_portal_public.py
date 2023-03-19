@@ -9,8 +9,20 @@ _logger = logging.getLogger(__name__)
 
 if main is not None:
 
-    class TrackBrandingPage(main.BrandingPage):
-        pass
+    from .mixins import TrackContactMixin
 
-    class TrackContactPage(main.ContactPage):
-        pass
+    class TrackBrandingPage(TrackContactMixin, main.BrandingPage):
+        def prepare(self, contact, user):
+            data = super().prepare(contact, user)
+            if data:
+                self.track_contact(contact, "branding")
+
+            return data
+
+    class TrackContactPage(TrackContactMixin, main.ContactPage):
+        def prepare(self, contact, user):
+            data = super().prepare(contact, user)
+            if data:
+                self.track_contact(contact, "contact")
+
+            return data
