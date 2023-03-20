@@ -6,7 +6,9 @@ class T4Industry(models.Model):
     _description = "Nganh cua cong ty"
     _rec_name = "code"
 
-    name = fields.Char("Industry Name")
+    name = fields.Char(
+        "Industry Name", default=lambda self: self._default_industry_name()
+    )
     code = fields.Char("Industry Code", required=True)
     company_ids = fields.One2many(
         "res.partner",
@@ -21,3 +23,6 @@ class T4Industry(models.Model):
     _sql_constraints = [
         ("t4_industry_code_unique", "UNIQUE(code)", "Industry must UNIQUE")
     ]
+
+    def _default_industry_name(self):
+        return "Unknown"

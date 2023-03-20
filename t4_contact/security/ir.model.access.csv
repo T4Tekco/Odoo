@@ -17,5 +17,8 @@ t4.access_t4_website_manager,Manager,t4_contact.model_t4_website,t4_group_manage
 t4.access_t4_social_user,User,t4_contact.model_t4_social_network,t4_group_user,1,1,0,1
 t4.access_t4_social_manager,Manager,t4_contact.model_t4_social_network,t4_group_manager,1,1,1,1
 
-t4.access_t4_contact_category,Portal User,base.model_res_partner_category,base.group_portal,1,0,1,0
-t4.access_t4_contact_category,Public User,base.model_res_partner_category,base.group_public,1,0,1,0
+t4.access_t4_contact_category_portal,Portal User,base.model_res_partner_category,base.group_portal,1,0,1,0
+t4.access_t4_contact_category_public,Public User,base.model_res_partner_category,base.group_public,1,0,1,0
+
+t4.access_t4_industry_portal,Portal User,t4_contact.model_t4_industry,base.group_portal,1,0,0,0
+t4.access_t4_industry_public,Public User,t4_contact.model_t4_industry,base.group_public,1,0,0,0
