@@ -25,7 +25,6 @@ class BaseFilter(ABC):
 class ContactFilter(BaseFilter):
     def initialize(self, value: str):
         self.domain.append(("name", "ilike", value))
-        self.domain.append(("privacy_search", "=", True))
 
     def add_keyword(self, keywords: Iterable[str]):
         for keyword in keywords:
@@ -35,6 +34,7 @@ class ContactFilter(BaseFilter):
 
 class T4Search(http.Controller):
     FIELDS = ("name", "website_custom_url")
+    FILTER = ContactFilter
 
     def _get_fields(self):
         return self.FIELDS
@@ -54,11 +54,14 @@ class T4Search(http.Controller):
 
         return Contact.sudo().search(domain, limit=kw.get("limit", 0))  # type:ignore
 
+    def get_filter(self):
+        return self.FILTER
+
     def get_domain(self, **kw):
         query = kw.get("query", "")
         keywords = kw.get("keywords", "").split(",")
 
-        _filter = ContactFilter(query)
+        _filter = self.get_filter()(query)
         _filter.add_keyword(keywords)
 
         domain = _filter.build_domain()

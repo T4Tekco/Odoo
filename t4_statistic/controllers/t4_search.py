@@ -1,60 +1,64 @@
 # -*- coding: utf-8 -*-
-import logging
-from typing import Iterable
+try:
+    from odoo.addons.t4_search.controllers.search import T4Search  # type: ignore
+except ImportError:
+    T4Search = None
 
-from odoo import http
-from odoo.addons.t4_search.controllers.search import T4Search  # type: ignore
+import logging
 
 _logger = logging.getLogger(__name__)
 
 
-class T4SearchKeyword(T4Search):
-    """Track after search"""
+if T4Search is not None:
+    from odoo import http
 
-    def track_record(self, _industry=None, _keywords=None):
-        category = http.request.env["res.partner.category"]
-        industry = http.request.env["t4.industry"]
-        track = http.request.env["t4.track"]
+    class T4SearchKeyword(T4Search):
+        """Track after search"""
 
-        categories = []
-        _i = None
+        def track_record(self, _industry=None, _keywords=None):
+            category = http.request.env["res.partner.category"]
+            industry = http.request.env["t4.industry"]
+            track = http.request.env["t4.track"]
 
-        if _keywords:
-            for _k in _keywords:
-                if c := category.search([("name", "=", _k.strip())]):
-                    categories.append(c)
+            categories = []
+            _i = None
 
-        if _industry:
-            _i = industry.search([("code", "=", _industry)])
+            if _keywords:
+                for _k in _keywords:
+                    if c := category.search([("name", "=", _k.strip())]):
+                        categories.append(c)
 
-        _i = _i.id if _i else None
+            if _industry:
+                _i = industry.search([("code", "=", _industry)])
 
-        if not categories and not _i:
-            return
+            _i = _i.id if _i else None
 
-        data = {"tag_ids": [c.id for c in categories], "industry_id": _i}
+            if not categories and not _i:
+                return
 
-        track.sudo().create(data)
+            data = {"tag_ids": [c.id for c in categories], "industry_id": _i}
 
-    def get_domain(self, **kw):
-        domain = super().get_domain(**kw)  # type: ignore
+            track.sudo().create(data)
 
-        keywords = kw.get("keywords", "").split(",")
-        industry = kw.get("industry", "").strip()
+        def get_domain(self, **kw):
+            domain = super().get_domain(**kw)  # type: ignore
 
-        self.track_record(industry, keywords)
-        return domain
+            keywords = kw.get("keywords", "").split(",")
+            industry = kw.get("industry", "").strip()
 
-    def track_contact_search(self, contact_ids):
-        if not contact_ids:
-            return
+            self.track_record(industry, keywords)
+            return domain
 
-        _logger.info(contact_ids)
-        track_contact = http.request.env["t4.track.contact"]
-        track_contact.sudo().create({"contact_ids": contact_ids})
+        def track_contact_search(self, contact_ids):
+            if not contact_ids:
+                return
 
-    def get_recordset(self, *args, **kw):
-        recordset = super().get_recordset(*args, **kw)
+            _logger.info(contact_ids)
+            track_contact = http.request.env["t4.track.contact"]
+            track_contact.sudo().create({"contact_ids": contact_ids})
 
-        self.track_contact_search([r["id"] for r in recordset])
-        return recordset
+        def get_recordset(self, *args, **kw):
+            recordset = super().get_recordset(*args, **kw)
+
+            self.track_contact_search([r["id"] for r in recordset])
+            return recordset

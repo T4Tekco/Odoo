@@ -16,6 +16,5 @@
         "views/search_templates.xml",
         "views/snippets/snippets.xml",
         "views/snippets/s_t4_contact_searchbar.xml",
-        "views/search_views_privacy.xml",
     ],
 }
