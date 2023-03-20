@@ -1,0 +1,41 @@
+<odoo>
+    <!-- Single Form -->
+
+    <record id="search_contact_privacy" model="ir.ui.view">
+        <field name="name">Privacy Contact</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="t4_contact.view_contact_simple_form_t4_extend" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="attributes">
+                <attribute name="attrs">{}</attribute>
+            </field>
+        </field>
+    </record>
+    <!-- Form -->
+    <record id="search_contact_privacy_form" model="ir.ui.view">
+        <field name="name">privacy</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="t4_contact.view_contact_form_t4_extend" />
+        <field name="arch" type="xml">
+            <xpath expr="//h1" position="after">
+                <div>
+                    <div name="options">
+                        <span class="d-inline-block">
+                            <field name="privacy_search" />
+                            <label for="privacy_search" />
+                        </span>
+                        <span class="d-inline-block">
+                            <field name="privacy_view" />
+                            <label for="privacy_view" />
+                        </span>
+                        <span class="d-inline-block">
+                            <field name="privacy_download" />
+                            <label for="privacy_download" />
+                        </span>
+                    </div>
+                </div>
+                <separator />
+            </xpath>
+        </field>
+    </record>
+</odoo>

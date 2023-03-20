@@ -7,7 +7,7 @@ class T4Industry(models.Model):
     _rec_name = "code"
 
     name = fields.Char("Industry Name")
-    code = fields.Char("Industry Code", unique=True)
+    code = fields.Char("Industry Code", required=True)
     company_ids = fields.One2many(
         "res.partner",
         string="Companies Main",
@@ -15,7 +15,7 @@ class T4Industry(models.Model):
         invisible="1",
     )
 
-    industry_ids = fields.Many2many(
+    sub_company_ids = fields.Many2many(
         "res.partner", relation="industry_rel", string="Companies Sub"
     )
     _sql_constraints = [

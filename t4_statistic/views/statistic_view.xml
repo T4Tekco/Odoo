@@ -1,0 +1,76 @@
+<odoo>
+  <data>
+    
+
+    <record model="ir.ui.view" id="t4_track_list">
+      <field name="name">T4 Track List</field>
+      <field name="model">t4.track</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="industry_id"/>
+          <field name="tag_ids" widget ="many2many_tags"/>
+          <field name="search_datetime"/>
+        </tree>
+      </field>
+    </record>
+    <!-- T4 track contact -->
+     <record model="ir.ui.view" id="t4_track_contact_history">
+      <field name="name">T4 Track Contact History</field>
+      <field name="model">t4.track.contact</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="track_state"/>
+          <field name="contact_ids" widget ="many2many_tags"/>
+          <field name="search_datetime"/>
+        </tree>
+      </field>
+    </record>
+    <!-- Filter & Group By -->
+    <record id="t4_track_filter_and_groupby" model="ir.ui.view">
+      <field name="name">T4 Filter And Group By</field>
+      <field name="model">t4.track</field>
+      <field name="arch" type="xml">
+        <search string="Search Visitor">
+        <field name="search_datetime" invisible="1" />
+              <filter string="Last 7 Days" name="filter_last_7_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=7))]"/>
+              <filter string="Last 30 Days" name="filter_last_30_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=30))]"/>
+              <separator/>
+        </search>
+      </field>
+    </record>
+    <!-- Graph visitor -->
+      <record id="t4_view_graph_visitor" model="ir.ui.view">
+        <field name="name">T4 View Graph Visitor</field>
+        <field name="model">t4.track</field>
+        <field name="arch" type="xml">
+          <graph string="" stacked="false" type="line">
+              <field name="search_datetime" interval="day" />
+              <!-- <field name="contact_ids" widget="Many2many_tags"/> -->
+          </graph>
+        </field>
+      </record>
+
+    <!-- Graph  -->
+      <record id="t4_view_graph" model="ir.ui.view">
+        <field name="name">T4 View Graph</field>
+        <field name="model">t4.track.contact</field>
+        <field name="arch" type="xml">
+          <graph string="" stacked="false" type="line">
+              <field name="search_datetime" interval="day" />
+              <!-- <field name="contact_ids" widget="Many2many_tags"/> -->
+          </graph>
+        </field>
+      </record>
+<!--     
+     <record id="t4_track_visitor_view_graph" model="ir.ui.view">
+        <field name="name"> T4 Visitor Graph</field>
+        <field name="model">t4.track</field>
+        <field name="arch" type="xml">
+            <graph string="Visitors" type="line" sample="1">
+                <field name="search_datetime" interval="day"/>
+            </graph>
+        </field>
+    </record> -->
+
+  </data>
+</odoo>
