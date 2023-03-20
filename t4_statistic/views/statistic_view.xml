@@ -25,19 +25,37 @@
         </tree>
       </field>
     </record>
-    <!-- Filter & Group By -->
+    <!-- Filter & Group By in Industry -->
     <record id="t4_track_filter_and_groupby" model="ir.ui.view">
       <field name="name">T4 Filter And Group By</field>
       <field name="model">t4.track</field>
       <field name="arch" type="xml">
         <search string="Search Visitor">
         <field name="search_datetime" invisible="1" />
+              <!-- <filter string="Top Contact Search" name="filter_top_contact_search" domain="[('contact_ids', '=', 'False')]"/> -->
+              <!-- <filter string="Top Industry Search" name="filter_top_industry_search" domain="[('industry_id', '=', 'True')]"/> -->
               <filter string="Last 7 Days" name="filter_last_7_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=7))]"/>
               <filter string="Last 30 Days" name="filter_last_30_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=30))]"/>
               <separator/>
         </search>
       </field>
     </record>
+    <!-- Filter & Group By in Contact -->
+    <record id="t4_track_filter_and_groupby_contact" model="ir.ui.view">
+      <field name="name">T4 Filter And Group By Contact</field>
+      <field name="model">t4.track.contact</field>
+      <field name="arch" type="xml">
+        <search string="Search Visitor">
+        <field name="search_datetime" invisible="1" />
+              <!-- <filter string="Top Contact Search" name="filter_top_contact_search" domain="[('contact_ids', '=', 'False')]"/> -->
+              <!-- <filter string="Top Industry Search" name="filter_top_industry_search" domain="[('industry_id', '=', 'True')]"/> -->
+              <filter string="Last 7 Days" name="filter_last_7_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=7))]"/>
+              <filter string="Last 30 Days" name="filter_last_30_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=30))]"/>
+              <separator/>
+        </search>
+      </field>
+    </record>
+
     <!-- Graph visitor -->
       <record id="t4_view_graph_visitor" model="ir.ui.view">
         <field name="name">T4 View Graph Visitor</field>
@@ -45,7 +63,7 @@
         <field name="arch" type="xml">
           <graph string="" stacked="false" type="line">
               <field name="search_datetime" interval="day" />
-              <!-- <field name="contact_ids" widget="Many2many_tags"/> -->
+              <field name="tag_ids" widget="Many2many_tags"/>
           </graph>
         </field>
       </record>
@@ -57,7 +75,7 @@
         <field name="arch" type="xml">
           <graph string="" stacked="false" type="line">
               <field name="search_datetime" interval="day" />
-              <!-- <field name="contact_ids" widget="Many2many_tags"/> -->
+              <field name="contact_ids" widget="Many2many_tags"/>
           </graph>
         </field>
       </record>
