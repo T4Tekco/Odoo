@@ -48,12 +48,11 @@ class Contact(models.Model):
 
     identity = fields.Char("Identity ID/Business Code")
 
-    # ---Social nextwork
+    # ---Social network
     social_list_ids = fields.One2many(
         "t4.social_network", "company_id", string="Social Network"
     )
-    #  --- Search Primacy
-    search_accept = fields.Boolean("Accept Search", default="True")
+    #  --- Search Privacy
     priority = fields.Selection(
         [
             ("0", "Normal"),
