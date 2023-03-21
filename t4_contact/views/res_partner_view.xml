@@ -39,6 +39,7 @@
                 <hr class="mt-3 mb-3" />
                 <group colspan="2">
                     <group name="t4_info_gr">
+                        <field name="sex" />
                         <field name="phone_ids" widget="many2many_tags" />
                         <field name="fax_ids" widget="many2many_tags" />
                         <field name="website_ids" widget="many2many_tags" />

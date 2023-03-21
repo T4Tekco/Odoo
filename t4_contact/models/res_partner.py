@@ -13,6 +13,11 @@ class Contact(models.Model):
     industry_ids = fields.Many2many(
         "t4.industry", relation="industry_rel", string="Sub Industries"
     )
+    sex = fields.Selection(
+        [("male", "Male"), ("female", "Female"), ("unknown", "Unknown")],
+        string="Gender",
+        default="unknown",
+    )
     registration_office = fields.Char(string="Registration Office")
     # 1 cái list sẽ chứa nhiều danh sách
     # ví dụ: 1 list phone sẽ chứa nhiều phone
