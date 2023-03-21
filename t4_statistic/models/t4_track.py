@@ -12,13 +12,37 @@ class T4Track(models.Model):
     _order = "search_datetime DESC"
 
     tag_ids = fields.Many2many(
-        "res.partner.category", string="Tags", relation="t4_tag_track_rel"
+        "res.partner.category",
+        string="Tags",
+        relation="t4_tag_track_rel",
     )
     industry_id = fields.Many2one("t4.industry", string="Industry")
 
     search_datetime = fields.Datetime(
         "Search Date", default=fields.Datetime.now, required=True, readonly=True
     )
+
+    @api.model
+    def top_keyword(self, n=5):
+        keyword = self.env["res.partner.category"]
+        result = keyword.search_read(
+            [],
+            ("name", "search_portal_count"),
+            order="search_portal_count DESC",
+            limit=n,
+        )
+        return result
+
+    @api.model
+    def top_industry_search(self, n=5):
+        industry = self.env["t4.industry"]
+        result = industry.search_read(
+            [],
+            ("name", "code", "search_portal_count"),
+            order="search_portal_count DESC",
+            limit=n,
+        )
+        return result
 
     @api.model
     def create(self, vals_list):
@@ -53,6 +77,21 @@ class T4TrackContact(models.Model):
     search_datetime = fields.Datetime(
         "Search Date", default=fields.Datetime.now, required=True, readonly=True
     )
+
+    @api.model
+    def get_statistic(self):
+        return True
+
+    @api.model
+    def top_contact_search(self, n=5):
+        contact = self.env["res.partner"]
+        result = contact.search_read(
+            [],
+            ("name", "search_portal_count"),
+            order="search_portal_count DESC",
+            limit=n,
+        )
+        return result
 
     @api.model
     def _default_track_type_id(self):

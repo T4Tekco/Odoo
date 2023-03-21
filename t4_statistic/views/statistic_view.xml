@@ -34,6 +34,7 @@
         <field name="search_datetime" invisible="1" />
               <!-- <filter string="Top Contact Search" name="filter_top_contact_search" domain="[('contact_ids', '=', 'False')]"/> -->
               <!-- <filter string="Top Industry Search" name="filter_top_industry_search" domain="[('industry_id', '=', 'True')]"/> -->
+              <filter string="Top Keyword Search" name="filter_top_keyword_search" domain="[('tag_ids', '=', 'True')]"/>
               <filter string="Last 7 Days" name="filter_last_7_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=7))]"/>
               <filter string="Last 30 Days" name="filter_last_30_days" domain="[('search_datetime', '&gt;', datetime.datetime.now() - datetime.timedelta(days=30))]"/>
               <separator/>
