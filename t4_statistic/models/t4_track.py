@@ -1,6 +1,7 @@
 import logging
 
 from odoo import api, fields, models
+from collections import Counter
 
 _logger = logging.getLogger(__name__)
 
@@ -16,7 +17,10 @@ class T4Track(models.Model):
         string="Tags",
         relation="t4_tag_track_rel",
     )
-    industry_id = fields.Many2one("t4.industry", string="Industry")
+    industry_id = fields.Many2one(
+        "t4.industry",
+        string="Industry",
+    )
 
     search_datetime = fields.Datetime(
         "Search Date", default=fields.Datetime.now, required=True, readonly=True
@@ -43,6 +47,18 @@ class T4Track(models.Model):
             limit=n,
         )
         return result
+
+    @api.model
+    def top_industry_keyword(self, industry_code):
+        track = self.env["t4.track"]
+        tracks = track.search([("industry_id.code", "=", industry_code)])
+        keywords = Counter()
+        for t in tracks:
+            for key in t.tag_ids:
+                keywords[key.name] += 1
+
+        data = [{"keyword": k, "count": v} for k, v in keywords.items()]
+        return sorted(data, reverse=True, key=lambda d: d["count"])
 
     @api.model
     def create(self, vals_list):

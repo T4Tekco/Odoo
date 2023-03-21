@@ -13,6 +13,7 @@ class Contact(models.Model):
     industry_ids = fields.Many2many(
         "t4.industry", relation="industry_rel", string="Sub Industries"
     )
+    registration_office = fields.Char(string="Registration Office")
     # 1 cái list sẽ chứa nhiều danh sách
     # ví dụ: 1 list phone sẽ chứa nhiều phone
     # 1 số agrument của fields.One2many: 1. model của đối tượng 2. foreign key 3. string
