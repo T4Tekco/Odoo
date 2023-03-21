@@ -11,6 +11,11 @@ class T4Contact(models.Model):
     @api.model
     def parcel(self, data: Any):
         """
+        ---
+        input: data
+        output: response
+
+        ---
         data:
         {
             "company_name": {
@@ -38,11 +43,11 @@ class T4Contact(models.Model):
             },
             "charter_capital": float,
             "registration_office": string,
-            "owners": [people, ...],
-            "legal_representatives": [people, ...]
+            "owners": [People, ...],
+            "legal_representatives": [People, ...]
         }
 
-        interface people
+        interface People
         {
             "name": string,
             "sex": "male" | "female" | "unknown",
@@ -50,19 +55,28 @@ class T4Contact(models.Model):
             "ethnicity": string,
             "identity": string,
             "position": string,
-            "permanent_address": address,
-            "contact_address": address,
+            "permanent_address": Address,
+            "contact_address": Address,
         }
 
-        interface address
+        interface Address
         {
             "street": string,
             "street2": string,
             "city": string,
+            "state_code": string,
+            "zip": string,
             "country_code": string
         }
 
         date format: %Y-%m-%d, eg: 2012-12-30
+
+        ---
+        response
+        {
+            "status": "success" | "fail"
+            "message": string,
+        }
         """
 
         return {}
