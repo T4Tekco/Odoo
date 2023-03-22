@@ -19,9 +19,6 @@ class Contact(models.Model):
         default="unknown",
     )
     day_of_born = fields.Date(string="Date Of Establishment/Date Of Birth")
-    # dan toc gi tu ghi
-    ethnicity = fields.Char(string="Ethnicity")
-    document_url = fields.Char(string="Document URL")
 
     registration_office = fields.Char(string="Registration Office")
     # 1 cái list sẽ chứa nhiều danh sách
@@ -71,4 +68,8 @@ class Contact(models.Model):
         ],
         default="0",
         string="Favorite",
+    )
+
+    attachment_ids = fields.One2many(
+        "t4.contact.attachment", inverse_name="contact_id", string="Attachments"
     )
