@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 
+import logging
 from typing import Any
 
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class T4Contact(models.Model):
     _inherit = "res.partner"
 
     @api.model
-    def parcel(self, data: Any):
+    def bcdn(self, data: Any):
         """
         ---
         input: data
@@ -25,13 +28,13 @@ class T4Contact(models.Model):
             },
             "identity": string,
             "tax_code: string,
-            "day_of_birth": date,
-            "country_code": string,
+            "date_of_born": date,
             "headquarters_address": {
                 "street": string,
                 "city": string,
                 "zip": string,
-                "country": string,
+                "state_code", string,
+                "country_code": string,
                 "phone": string,
                 "fax": string,
                 "email": string,
@@ -44,7 +47,8 @@ class T4Contact(models.Model):
             "charter_capital": float,
             "registration_office": string,
             "owners": [People, ...],
-            "legal_representatives": [People, ...]
+            "legal_representatives": [People, ...],
+            "document_url": string
         }
 
         interface People
@@ -78,5 +82,6 @@ class T4Contact(models.Model):
             "message": string,
         }
         """
+        _logger.info(data)
 
-        return {}
+        return True

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "T4 Parcel",
+    "name": "T4 Document Management System",
     "summary": """T4TekCo, Your right solution""",
     "description": """
-        Ok Luon
+        Chương 5, trời bao tối
     """,
     "author": "T4Tek Team",
     "website": "https://t4tek.co/",
