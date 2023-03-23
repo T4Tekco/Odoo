@@ -11,7 +11,7 @@ COMMON_FIELDS_MAP = {
     "name": "name",
     "identity": "identity",
     "tax_code": "vat",
-    "date_of_born": "date_of_born",
+    "date_of_birth": "date_of_birth",
     "charter_capital": "charter_capital",
 }
 
@@ -39,7 +39,7 @@ COMPANY_FIELDS_MAP = {
 INDIVIDUAL_FIELDS_MAP = {
     "sex": "sex",
     "nationality_code": "nationality_code",
-    "position": "position",
+    "position": "function",
 }
 
 
@@ -118,6 +118,12 @@ class T4Contact(models.Model):
                 self._create_or_get_industry(code) for code in data["industry_ids"]
             ]
 
+        if "fax_ids" in data:
+            if data["fax_ids"]:
+                data["fax_ids"] = [self._create_fax(data["fax_ids"])]
+            else:
+                data.pop("fax_ids")
+
         return data
 
     def format_data(self, data):
@@ -135,6 +141,11 @@ class T4Contact(models.Model):
 
     def _create_company(self, data: Any):
         return super().create(data)
+
+    def _create_fax(self, fax: str):
+        Fax = self.env["t4.fax"]
+
+        return Fax.create({"fax": fax}).id
 
     def _create_contact(self, data: Any):
         contact_address = None
@@ -157,12 +168,12 @@ class T4Contact(models.Model):
         legal_ids = []
 
         for k, v in owner_table.items():
-            contact_id = self._create_contact(v)
-            owner_ids.append(contact_id)
-
             if k in legal_table:
+                contact_id = self._create_contact(v | legal_table[k])
                 legal_ids.append(contact_id)
                 legal_table.pop(k)
+            else:
+                contact_id = self._create_contact(v)
 
         for k, v in legal_table.items():
             legal_ids.append(self._create_contact(v))
@@ -253,11 +264,12 @@ class T4Contact(models.Model):
         owners = self.format_contacts_data(owners)
         legal_representatives = self.format_contacts_data(legal_representatives)
 
-        owners_ids, legal_ids = self._process_contacts(owners, legal_representatives)
+        owner_ids, legal_ids = self._process_contacts(owners, legal_representatives)
 
-        company["owners_ids"] = owners_ids
+        company["is_company"] = True
+        company["owner_ids"] = owner_ids
         company["legal_representative_ids"] = legal_ids
-        company["child_ids"] = list(set(owners_ids + legal_ids))
+        company["child_ids"] = list(set(owner_ids + legal_ids))
 
         company = self._create_company(company)
 
