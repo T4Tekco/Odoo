@@ -69,6 +69,22 @@
                     </group>
                 </group>
             </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="t4_contact_attachment" string="Document">
+                    <field name="attachment_ids">
+                        <tree>
+                            <field name="name" />
+                            <field name="icon" />
+                            <field name="document_url" />
+                        </tree>
+                        <form>
+                            <field name="name" placeholder="Name" />
+                            <field name="icon" placeholder="Icon/Image URL" />
+                            <field name="document_url" placeholder="Document URL" />
+                        </form>
+                    </field>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

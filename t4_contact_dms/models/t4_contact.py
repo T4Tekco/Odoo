@@ -34,6 +34,7 @@ COMPANY_FIELDS_MAP = {
     "fax": "fax_ids",
     "main_industry_code": "main_industry_id",
     "sub_industries": "industry_ids",
+    "document_url": "document_url",
 }
 
 INDIVIDUAL_FIELDS_MAP = {
@@ -164,8 +165,29 @@ class T4Contact(models.Model):
 
         return result
 
-    def _create_company(self, data: Any):
+    def _create_company(self, data: Any, owners, legals):
+        data["is_company"] = True
+        data["owner_ids"] = owners
+        data["legal_representative_ids"] = legals
+        data["child_ids"] = list(set(owners + legals))
+
+        if "document_url" in data:
+            if doc_url := data.pop("document_url"):
+                attachment_id = self._create_document(doc_url)
+                data["attachment_ids"] = [attachment_id]
+
         return super().create(data)
+
+    def _create_document(self, document_url: str) -> int:
+        Attachment = self.env["t4.contact.attachment"]
+
+        return Attachment.create(
+            {
+                "name": "Bo Cao Doanh Nghiep",
+                "icon": "/t4_contact_dms/static/src/img/download-pdf.png",
+                "document_url": document_url,
+            }
+        ).id
 
     def _create_fax(self, fax: str):
         Fax = self.env["t4.fax"]
@@ -303,11 +325,7 @@ class T4Contact(models.Model):
 
             owner_ids, legal_ids = self._process_contacts(owners, legal_representatives)
 
-            company["is_company"] = True
-            company["owner_ids"] = owner_ids
-            company["legal_representative_ids"] = legal_ids
-            company["child_ids"] = list(set(owner_ids + legal_ids))
-            company = self._create_company(company)
+            company = self._create_company(company, owner_ids, legal_ids)
 
             _logger.info(company)
             _logger.info(owners)
