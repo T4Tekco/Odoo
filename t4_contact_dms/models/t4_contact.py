@@ -42,9 +42,31 @@ INDIVIDUAL_FIELDS_MAP = {
     "position": "function",
 }
 
+RESPONSE = {
+    0: {"status": "success", "message": ""},
+    1: {"status": "failure", "message": "Format error"},
+    2: {"status": "failure", "message": "Already exists"},
+}
+
+MANDATORY = ("name", "identity")
+
 
 class T4Contact(models.Model):
     _inherit = "res.partner"
+
+    def _pre_check(self, data):
+        for field in MANDATORY:
+            if field not in data:
+                return False
+
+        return True
+
+    def pre_check(self, *args):
+        for data in args:
+            if not self._pre_check(data):
+                return False
+
+        return True
 
     def _get_company_fields(self):
         return COMMON_FIELDS_MAP | ADDRESS_FIELDS_MAP | COMPANY_FIELDS_MAP
@@ -107,6 +129,9 @@ class T4Contact(models.Model):
 
         if "state_id" in data:
             data["state_id"] = self._get_state_id(data["state_id"])
+
+        if "nationality_code" in data:
+            data["nationality_code"] = self._get_country_id(data["nationality_code"])
 
         if "main_industry_id" in data:
             data["main_industry_id"] = self._create_or_get_industry(
@@ -253,28 +278,41 @@ class T4Contact(models.Model):
         ---
         response
         {
-            "status": "success" | "fail"
+            "status": "success" | "failure"
             "message": string,
         }
         """
-        _logger.info(data)
-        company, owners, legal_representatives = self._extract_data(data)
-        company = self.format_data(company)
+        _response_code = 0
 
-        owners = self.format_contacts_data(owners)
-        legal_representatives = self.format_contacts_data(legal_representatives)
+        try:
+            company, owners, legal_representatives = self._extract_data(data)
+        except KeyError:
+            return RESPONSE[1]
 
-        owner_ids, legal_ids = self._process_contacts(owners, legal_representatives)
+        # ------------------------------------
+        if not self.pre_check(company, *owners, *legal_representatives):
+            return RESPONSE[1]
 
-        company["is_company"] = True
-        company["owner_ids"] = owner_ids
-        company["legal_representative_ids"] = legal_ids
-        company["child_ids"] = list(set(owner_ids + legal_ids))
+        # ------------------------------------
+        if self.search([("identity", "=", company["identity"])]):
+            _response_code = 2
+        else:
+            company = self.format_data(company)
+            owners = self.format_contacts_data(owners)
+            legal_representatives = self.format_contacts_data(legal_representatives)
 
-        company = self._create_company(company)
+            owner_ids, legal_ids = self._process_contacts(owners, legal_representatives)
 
-        _logger.info(company)
-        _logger.info(owners)
-        _logger.info(legal_representatives)
+            company["is_company"] = True
+            company["owner_ids"] = owner_ids
+            company["legal_representative_ids"] = legal_ids
+            company["child_ids"] = list(set(owner_ids + legal_ids))
+            company = self._create_company(company)
 
-        return company
+            _logger.info(company)
+            _logger.info(owners)
+            _logger.info(legal_representatives)
+
+        # -------------------------------------
+
+        return RESPONSE[_response_code]
