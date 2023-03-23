@@ -255,6 +255,12 @@ class T4Contact(models.Model):
 
         owners_ids, legal_ids = self._process_contacts(owners, legal_representatives)
 
+        company["owners_ids"] = owners_ids
+        company["legal_representative_ids"] = legal_ids
+        company["child_ids"] = list(set(owners_ids + legal_ids))
+
+        company = self._create_company(company)
+
         _logger.info(company)
         _logger.info(owners)
         _logger.info(legal_representatives)
