@@ -39,7 +39,7 @@ COMPANY_FIELDS_MAP = {
 
 INDIVIDUAL_FIELDS_MAP = {
     "sex": "sex",
-    "nationality_code": "nationality_code",
+    "nationality_code": "nationality_id",
     "position": "function",
 }
 
@@ -131,8 +131,8 @@ class T4Contact(models.Model):
         if "state_id" in data:
             data["state_id"] = self._get_state_id(data["state_id"])
 
-        if "nationality_code" in data:
-            data["nationality_code"] = self._get_country_id(data["nationality_code"])
+        if "nationality_id" in data:
+            data["nationality_id"] = self._get_country_id(data["nationality_id"])
 
         if "main_industry_id" in data:
             data["main_industry_id"] = self._create_or_get_industry(
@@ -243,15 +243,13 @@ class T4Contact(models.Model):
         ---
         data:
         {
-            "company_name": {
+            "company": {
                 "name": string,
-                "foreign": string,
-                "shortname": string
-            },
-            "identity": string,
-            "tax_code: string,
-            "date_of_born": date,
-            "headquarters_address": {
+                "foreign_name": string,
+                "short_name": string,
+                "identity": string,
+                "tax_code": string,
+                "date_of_birth": date,
                 "street": string,
                 "city": string,
                 "zip": string,
@@ -260,27 +258,25 @@ class T4Contact(models.Model):
                 "phone": string,
                 "fax": string,
                 "email": string,
-                "website": string
-            },
-            "business_sectors": {
+                "website": string,
                 "main_industry_code": string,
-                "sub_industries": [string, ...]
-            },
-            "charter_capital": float,
-            "registration_office": string,
+                "sub_industries": [string, ...],
+                "charter_capital": float,
+                "registration_office": string,
+                "document_url": string,
+            }
             "owners": [People, ...],
-            "legal_representatives": [People, ...],
-            "document_url": string
+            "legal_representatives": [People, ...]
         }
 
         interface People
         {
             "name": string,
-            "sex": "male" | "female" | "unknown",
-            "day_of_birth": date,
-            "national_code": string,
-            "identity": string,
             "position": string,
+            "sex": "male" | "female" | "unknown",
+            "date_of_birth": date,
+            "nationality_code": string,
+            "identity": string,
             "permanent_address": Address,
             "contact_address": Address,
         }
@@ -300,8 +296,8 @@ class T4Contact(models.Model):
         ---
         response
         {
-            "status": "success" | "failure"
-            "message": string,
+            "status": "success" | "failure",
+            "message": string
         }
         """
         _response_code = 0
