@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="snippet_statistic" name="Statistic Dynamic">
+        <section class="dynamic_snippet_statistic">
+            <div class="container">
+                <div class="text-center">
+                        <table style="border">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>
+

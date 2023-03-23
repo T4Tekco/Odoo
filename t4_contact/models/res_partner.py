@@ -21,8 +21,18 @@ class Contact(models.Model):
     day_of_born = fields.Date(string="Date Of Establishment/Date Of Birth")
     # dan toc gi tu ghi
     ethnicity = fields.Char(string="Ethnicity")
+    # DOC URL,IMAGE
+    # image = fields.Binary("Image", help="Select your image here")
+    # <field name="image" widget='image' />
     document_url = fields.Char(string="Document URL")
-
+    # nationality
+    nationality_id = fields.Many2one(
+        "res.country", string="Nationality", ondelete="restrict"
+    )
+    nationality_code = fields.Char(
+        related="nationality_id.code", string="Nationality ID Code"
+    )
+    # Office
     registration_office = fields.Char(string="Registration Office")
     # 1 cái list sẽ chứa nhiều danh sách
     # ví dụ: 1 list phone sẽ chứa nhiều phone
