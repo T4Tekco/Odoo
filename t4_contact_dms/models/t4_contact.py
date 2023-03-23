@@ -61,13 +61,22 @@ class T4Contact(models.Model):
 
     def _extract_individual_data(self, data):
         _fields = self._get_individual_fields()
+        data = dict(data)
+        address = {}
+        contact_address = {}
+        if "permanent_address" in data:
+            address = self._extract_address_data(data.pop("permanent_address"))
+        if "contact_address" in data:
+            contact_address = self._extract_address_data(data.pop("contact_address"))
 
-        return {}
+        individual = {_fields[k]: v for k, v in data.items()}
+        individual |= address
+        individual["contact_address"] = contact_address
+        return individual
 
     def _extract_address_data(self, data):
         _fields = self._get_address_fields()
-
-        return {}
+        return {_fields[k]: v for k, v in data.items()}
 
     def _extract_data(self, data: Any):
         company_data = self._extract_company_data(data["company"])
@@ -99,17 +108,72 @@ class T4Contact(models.Model):
         if "state_id" in data:
             data["state_id"] = self._get_state_id(data["state_id"])
 
+        if "main_industry_id" in data:
+            data["main_industry_id"] = self._create_or_get_industry(
+                data["main_industry_id"]
+            )
+
+        if "industry_ids" in data:
+            data["industry_ids"] = [
+                self._create_or_get_industry(code) for code in data["industry_ids"]
+            ]
+
+        return data
+
     def format_data(self, data):
-        self._format_data(data)
+        return self._format_data(data)
+
+    def format_contacts_data(self, contacts):
+        result = []
+        for o in contacts:
+            o = self.format_data(o)
+            if "contact_address" in o:
+                o["contact_address"] = self.format_data(o["contact_address"])
+            result.append(o)
+
+        return result
 
     def _create_company(self, data: Any):
-        pass
+        return super().create(data)
 
     def _create_contact(self, data: Any):
-        pass
+        contact_address = None
+        if "contact_address" in data:
+            contact_address = data.pop("contact_address")
+            contact_address["type"] = "other"
 
-    def _create_industry(self, data: Any):
-        pass
+        contact = super().create(data)
+
+        if contact_address:
+            contact_address["parent_id"] = contact.id  # type: ignore
+            super().create(contact_address)
+
+        return contact.id  # type: ignore
+
+    def _process_contacts(self, owners, legal_representatives):
+        owner_table = {p["identity"]: p for p in owners}
+        legal_table = {p["identity"]: p for p in legal_representatives}
+        owner_ids = []
+        legal_ids = []
+
+        for k, v in owner_table.items():
+            contact_id = self._create_contact(v)
+            owner_ids.append(contact_id)
+
+            if k in legal_table:
+                legal_ids.append(contact_id)
+                legal_table.pop(k)
+
+        for k, v in legal_table.items():
+            legal_ids.append(self._create_contact(v))
+
+        return owner_ids, legal_ids
+
+    def _create_or_get_industry(self, industry_code: Any):
+        Industry = self.env["t4.industry"]
+        i = Industry.search([("code", "=", industry_code)], limit=1)
+        _id = i.id if i else Industry.create({"code": industry_code}).id
+        return _id
 
     @api.model
     def bcdn(self, data: Any):
@@ -184,8 +248,15 @@ class T4Contact(models.Model):
         """
         _logger.info(data)
         company, owners, legal_representatives = self._extract_data(data)
-        _logger.info(data)
-        self.format_data(company)
+        company = self.format_data(company)
+
+        owners = self.format_contacts_data(owners)
+        legal_representatives = self.format_contacts_data(legal_representatives)
+
+        owners_ids, legal_ids = self._process_contacts(owners, legal_representatives)
+
         _logger.info(company)
+        _logger.info(owners)
+        _logger.info(legal_representatives)
 
         return company
