@@ -1,0 +1,6 @@
+<template xml:space ="preserve">
+    <div t-name="t4_statistic.s_t4_statistic" class="container">
+        
+
+    </div>
+</template>
