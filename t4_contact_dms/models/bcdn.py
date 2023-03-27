@@ -210,7 +210,10 @@ class T4ContactBCDN(models.AbstractModel):
             contact_address["parent_id"] = contact.id  # type: ignore
             self.res_partner().create(contact_address)
 
-        return contact.id  # type: ignore
+        return contact
+
+    def create_contact(self, data: Any):
+        return self._create_contact(data)
 
     def _process_contacts(self, owners, legal_representatives):
         owner_table = {p["identity"]: p for p in owners}
@@ -220,14 +223,14 @@ class T4ContactBCDN(models.AbstractModel):
 
         for k, v in owner_table.items():
             if k in legal_table:
-                contact_id = self._create_contact(v | legal_table[k])
-                legal_ids.append(contact_id)
+                contact = self.create_contact(v | legal_table[k])
+                legal_ids.append(contact.id)
                 legal_table.pop(k)
             else:
-                contact_id = self._create_contact(v)
+                contact = self.create_contact(v)
 
         for k, v in legal_table.items():
-            legal_ids.append(self._create_contact(v))
+            legal_ids.append(self.create_contact(v).id)
 
         return owner_ids, legal_ids
 
@@ -326,6 +329,19 @@ class T4ContactBCDN(models.AbstractModel):
             owner_ids, legal_ids = self._process_contacts(owners, legal_representatives)
 
             company = self._create_company(company, owner_ids, legal_ids)
+
+            # -------
+
+            input_for_auto_users = [company] + [
+                c
+                for c in self.res_partner().search(
+                    [("id", "in", list(set(owner_ids + legal_ids)))]
+                )
+            ]
+
+            self.env["t4.user.creator"].sudo().create_bcdn_users(input_for_auto_users)
+
+            # --------
 
             _logger.info(company)
             _logger.info(owners)
