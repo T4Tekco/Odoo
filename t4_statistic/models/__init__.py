@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import industry, res_partner, t4_track
+from . import industry, res_partner, t4_track, main_page

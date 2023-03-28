@@ -17,5 +17,7 @@
         "security/ir.model.access.csv",
         "views/statistic_view.xml",
         "views/statistic_menu.xml",
+        "views/snippets/snippets.xml",
+        "views/snippets/dynamic_snippet_statistic.xml",
     ],
 }

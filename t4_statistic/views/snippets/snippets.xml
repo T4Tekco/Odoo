@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="t4_statistic_snippetss" inherit_id="website.snippets" name="T4 Statistic">
+        <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="t4_statistic.snippet_statistics" 
+            t-thumbnail ="/t4_statistic/static/src/img/s_statistics.svg" />
+        </xpath>
+    </template>
+    
+
+</odoo>

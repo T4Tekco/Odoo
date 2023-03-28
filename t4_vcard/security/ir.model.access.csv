@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-t4_mass_vcard_user,Mass vCard User,model_res_partner_t4_massvcard,t4contact.t4_group_user,1,1,1,1
+t4_mass_vcard_user,Mass vCard User,model_res_partner_t4_massvcard,t4_contact.t4_group_user,1,1,1,1
