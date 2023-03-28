@@ -25,7 +25,7 @@ class T4UserCreator(models.AbstractModel):
     def is_already_exist(self, login: str):
         return self.res_users().search_count([("login", "=", login)]) > 0
 
-    def _generate_contact_username(self):
+    def _generate_contact_username(self) -> Any:
         while c := datetime.now().strftime(r"%Y%m%d%H%M%S"):
             username = f"{PREFIX_CN}{c}"
             if not self.is_already_exist(username):
@@ -50,11 +50,14 @@ class T4UserCreator(models.AbstractModel):
 
         return True
 
-    def create_bcdn_users(self, contacts: Any):
+    def _create_bcdn_users(self, contacts: Any):
         for contact in contacts:
             username = self._generate_username(contact)
-            if username:
-                user = self._create_user(username, contact.id)
-                self._chgrp_to_portal(user)
+            user = self._create_user(username, contact.id)
+            self._chgrp_to_portal(user)
 
+        return True
+
+    def create_bcdn_users(self, contacts: Any):
+        self._create_bcdn_users(contacts)
         return True
