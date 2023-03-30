@@ -50,14 +50,22 @@ class T4UserCreator(models.AbstractModel):
 
         return True
 
-    def _create_bcdn_users(self, contacts: Any):
+    def _create_bcdn_users(self, *contacts: Any):
+        users = []
         for contact in contacts:
             username = self._generate_username(contact)
             user = self._create_user(username, contact.id)
             self._chgrp_to_portal(user)
+            users.append(user)
 
-        return True
+        return users
 
-    def create_bcdn_users(self, contacts: Any):
-        self._create_bcdn_users(contacts)
-        return True
+    def create_bcdn_users(self, company: Any, individual: Any):
+        company_user = self._create_bcdn_users(company)[0]
+        individual_users = self._create_bcdn_users(*individual)
+
+        self.send_invite_link(company_user, individual_users)
+
+    def send_invite_link(self, company, individuals):
+        Sender = self.env["t4.users.mail.bcdn"]
+        Sender.mass_send_invite_mail([company] + individuals, company.email)

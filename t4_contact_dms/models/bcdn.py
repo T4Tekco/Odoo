@@ -332,11 +332,13 @@ class T4ContactBCDN(models.AbstractModel):
 
             # -------
 
-            input_for_auto_users = [company] + [
+            input_for_auto_users = [
                 c for c in self.res_partner().search([("id", "in", legal_ids)])
             ]
 
-            self.env["t4.user.creator"].sudo().create_bcdn_users(input_for_auto_users)
+            self.env["t4.user.creator"].sudo().create_bcdn_users(
+                company, input_for_auto_users
+            )
 
             # --------
 

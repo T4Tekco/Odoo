@@ -9,7 +9,7 @@
     "website": "https://t4tek.co/",
     "category": "T4/Contact",
     "version": "16.0.1.0.0",
-    "depends": ["t4_contact"],
+    "depends": ["t4_contact", "t4_auth"],
     "data": [],
     "license": "LGPL-3",
 }
