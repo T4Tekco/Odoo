@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="keyword_snippet_statistic" name="Statistc Keyword">
+        <section class="dynamic_snippet_keyword_statistic">
+            <h1>a nhon</h1>
+            <div class="container keyword_snippet_statistics ">
+            
+            </div>
+        </section>
+    </template>
+    <record id="t4_statistic.s_t4_statistic_user_001_js" model="ir.asset">
+        <field name="name">T4 Statistic 001 JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">t4_statistic/static/src/snippets/s_t4_statistic/001.js</field>
+    </record>
+     <record id="t4_statistic.s_t4_statistic_user_001_xml" model="ir.asset">
+        <field name="name">T4 Statistic 001 XML</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">t4_statistic/static/src/snippets/s_t4_statistic/001.xml</field>
+    </record>
+
+</odoo>

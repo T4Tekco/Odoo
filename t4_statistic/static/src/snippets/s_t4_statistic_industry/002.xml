@@ -1,0 +1,15 @@
+<template xml:space ="preserve">
+        <div t-name="t4_statistic.s_t4_statistic_industry" >
+             <t t-foreach="industry" t-as="industrys">
+                 <div class="container">
+                 <h1>met r nha</h1>
+                    <table style="width:30%; border: 1px solid black">
+                          <tr>
+                             <td> <t t-out="industrys.code"/> </td>
+                            <td> <t t-out="industrys.search_portal_count"/> </td>
+                          </tr>   
+                    </table>  
+                  </div>
+            </t>
+        </div>
+</template>

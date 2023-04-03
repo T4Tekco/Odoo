@@ -1,0 +1,30 @@
+<template xml:space ="preserve">
+        <div t-name="t4_statistic.s_t4_statistic_mainpage" >
+              
+                 <div class="container">
+                    <table style="width:30%; border: 1px solid black">
+                          <tr>
+                            <td>Visit</td>
+                            <td> <t t-out="mainpage.visit_count"></t></td>
+                          </tr> 
+                          <tr>
+                            <td>Search</td>
+                            <td> <t t-out="mainpage.search_portal_count"></t></td>
+                          </tr>   
+                          <tr>
+                            <td>Brading</td>
+                            <td> <t t-out="mainpage.branding_view_count"></t></td>
+                          </tr>   
+                          <tr>
+                            <td>Contact</td>
+                            <td> <t t-out="mainpage.contact_view_count"></t></td>
+                          </tr> 
+                          <tr>
+                            <td>Vcard Down</td>
+                            <td> <t t-out="mainpage.vcard_download_count"></t></td>
+                          </tr> 
+                    </table>  
+                  </div>
+           
+        </div>
+</template>

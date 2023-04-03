@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mainpage_snippet_statistic" name="Statistic Industry">
+        <section class="dynamic_snippet_industry_statistic">
+                <h1>aloooooooooo</h1>
+                <div class="container mainpage_snippet_statistics">
+
+                </div>
+        </section>
+    </template>
+    
+    <record id="t4_statistic.s_t4_statistic_mainpage_003_js" model="ir.asset">
+        <field name="name">T4 Statistic 003 JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">t4_statistic/static/src/snippets/s_t4_snippet_mainpage/003.js</field>
+    </record>
+     <record id="t4_statistic.s_t4_statistic_mainpage_003_xml" model="ir.asset">
+        <field name="name">T4 Statistic 003 XML</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">t4_statistic/static/src/snippets/s_t4_snippet_mainpage/003.xml</field>
+    </record>
+</odoo>

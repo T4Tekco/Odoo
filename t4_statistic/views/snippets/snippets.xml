@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="t4_statistic_snippetss" inherit_id="website.snippets" name="T4 Statistic">
+    <template id="t4_statistic_keyword_snippet" inherit_id="website.snippets" name="T4 Keyword Statistic">
         <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]" position="inside">
-            <t t-snippet="t4_statistic.snippet_statistics" 
+            <t t-snippet="t4_statistic.keyword_snippet_statistic" 
             t-thumbnail ="/t4_statistic/static/src/img/s_statistics.svg" />
         </xpath>
     </template>
-    
-
+    <!-- Industry -->
+     <template id="t4_statistic_industry_snippet" inherit_id="website.snippets" name="T4 Industry Statistic">
+         <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="t4_statistic.industry_snippet_statistic"
+            t-thumbnail="/t4_statistic/static/src/img/baodaumoi.svg"/>
+        </xpath>
+    </template>
+    <!-- mainpage -->
+   <template id="t4_statistic_mainpage" name="Statistic MainPage" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="t4_statistic.mainpage_snippet_statistic"
+            t-thumbnail="/t4_statistic/static/src/img/main_page.svg"/>
+        </xpath>
+   </template>
+   <!-- User Contact -->
+   <template id="t4_statistic_contact" name="Statistic Contact" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="t4_statistic.contact_snippet_statistic"
+            t-thumbnail="/t4_statistic/static/src/img/s_contact_user.svg"/>
+        </xpath>
+   </template>
 </odoo>

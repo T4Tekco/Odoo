@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models
+from collections import Counter
 
 
 class T4ContactCategory(models.Model):
@@ -24,3 +25,40 @@ class T4Contact(models.Model):
             "contact": self.contact_view_count,
             "vcard_down": self.vcard_download_count,
         }
+
+    @api.model
+    def search_mainpage(self):
+        search = self.env["res.partner"]
+        searchs = search.search([])
+        result = Counter()
+        for i in searchs:
+            result["search_portal_count"] += i.search_portal_count
+        return result
+
+    @api.model
+    def branding_mainpage(self):
+        branding = self.env["res.partner"]
+        brandings = branding.search([])
+        result = Counter()
+        for i in brandings:
+            result["branding_view_count"] += i.branding_view_count
+
+        return result
+
+    @api.model
+    def contact_mainpage(self):
+        contact = self.env["res.partner"]
+        contacts = contact.search([])
+        result = Counter()
+        for i in contacts:
+            result["contact_view_count"] += i.contact_view_count
+        return result
+
+    @api.model
+    def vcard_mainpage(self):
+        vcard = self.env["res.partner"]
+        vcards = vcard.search([])
+        result = Counter()
+        for i in vcards:
+            result["vcard_download_count"] += i.vcard_download_count
+        return result

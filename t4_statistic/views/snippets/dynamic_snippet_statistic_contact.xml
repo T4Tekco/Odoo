@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="contact_snippet_statistic" name="Statistc Contact">
+        <section class="dynamic_snippet_contact_statistic">
+            <h1>loloooo</h1>
+            <div class="container contact_snippet_statistics ">
+            
+            </div>
+        </section>
+    </template>
+    <record id="t4_statistic.s_t4_statistic_user_005_js" model="ir.asset">
+        <field name="name">T4 Statistic 005 JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">t4_statistic/static/src/snippets/s_t4_snippet_contact_user/005.js</field>
+    </record>
+     <record id="t4_statistic.s_t4_statistic_user_005_xml" model="ir.asset">
+        <field name="name">T4 Statistic 005 XML</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">t4_statistic/static/src/snippets/s_t4_snippet_contact_user/005.xml</field>
+    </record>
+
+</odoo>

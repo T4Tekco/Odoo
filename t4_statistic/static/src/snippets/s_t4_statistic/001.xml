@@ -1,19 +1,13 @@
 <template xml:space ="preserve">
     <div t-name="t4_statistic.s_t4_statistic" >
-        <t t-foreach="results.top_keyword" t-as="result">
+        <t t-foreach="keyword" t-as="result">
                   <div class="container">
-                    <h1 style="">Statistic KeyWord</h1>
+                   
                     <table style="width:30%; border: 1px solid black">
                           <tr>
                              <td> <t t-out="result.name"/> </td>
                             <td> <t t-out="result.search_portal_count"/> </td>
                           </tr>
-                          <!-- <tr>
-                             <td> <t t-out="result.code"/> </td>
-
-                            <td> <t t-out="result.search_portal_count" /> </td>
-                          </tr>   -->
-                       
                     </table>  
                   </div>
         </t>

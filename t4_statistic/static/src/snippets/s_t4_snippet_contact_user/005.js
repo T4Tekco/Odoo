@@ -3,23 +3,23 @@
 import public_widget from "web.public.widget";
 import {qweb} from "web.core";
 
-export default public_widget.registry.t4_statistic_industry_info = 
+export default public_widget.registry.t4_statistic = 
     public_widget.Widget.extend({
-        selector: ".industry_snippet_statistics",
+        selector: ".contact_snippet_statistics",
         start:function(){
             console.log("hello babe");
-            // this._rpc({
-            //     route:"/s/industry",
-            //     params: {},
-            // }).then((r)=>{
-            //     console.log(r)
-            //     this._render(r)
-            // });
+            this._rpc({
+                route:"/s/usercontact",
+                params: {},
+            }).then((r)=>{
+                console.log(r)
+                this._render(r)
+            });
         },
 
         _render:function(data) {
-            let template = "t4_statistic.s_t4_statistic_industry"
-            let output = qweb.render(template,{industry: data});
+            let template = "t4_statistic.s_t4_statistic_contact_user"
+            let output = qweb.render(template,{contact: data});
             console.log(output)
             let div = document.createElement("div")
             div.innerHTML = output;

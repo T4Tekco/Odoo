@@ -18,6 +18,9 @@
         "views/statistic_view.xml",
         "views/statistic_menu.xml",
         "views/snippets/snippets.xml",
-        "views/snippets/dynamic_snippet_statistic.xml",
+        "views/snippets/dynamic_snippet_statistic_keyword.xml",
+        "views/snippets/dynamic_snippet_statistic_industry.xml",
+        "views/snippets/dynamic_snippet_statistic_mainpage.xml",
+        "views/snippets/dynamic_snippet_statistic_contact.xml",
     ],
 }

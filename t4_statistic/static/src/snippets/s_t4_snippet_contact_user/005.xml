@@ -1,0 +1,16 @@
+<template xml:space ="preserve">
+        <div t-name="t4_statistic.s_t4_statistic_contact_user" >
+           
+                 <div class="container">
+                    <table style="width:30%; border: 1px solid black">
+                          <tr>
+                             <td> <t t-out="contact.search"/> </td>
+                            <td> <t t-out="contact.branding"/> </td>
+                            <td> <t t-out="contact.contact"/> </td>
+                            <td> <t t-out="contact.vcard_down"/> </td>
+                          </tr>   
+                    </table>  
+                  </div>
+           
+        </div>
+</template>
