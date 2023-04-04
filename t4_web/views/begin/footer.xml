@@ -1,0 +1,7 @@
+<odoo>
+    <template id="t4_web.footer" name="Footer">
+        <t >
+        <p>footer</p>
+        </t>
+    </template>
+</odoo>
